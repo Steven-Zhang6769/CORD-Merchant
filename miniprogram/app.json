@@ -1,0 +1,89 @@
+{
+    "pages": [
+        "pages/welcome/index",
+        "pages/pendingReview/index",
+        "pages/index/index",
+        "pages/signup/index",
+        "pages/signup/step0/index",
+        "pages/signup/step1/index",
+        "pages/signup/step2/index",
+        "pages/request/index",
+        "pages/calendar/index",
+        "pages/messages/index",
+        "pages/profile/index"
+    ],
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#F6F6F6",
+        "navigationBarTitleText": "云开发 QuickStart",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "custom": true,
+        "color": "#000000",
+        "selectedColor": "#000000",
+        "backgroundColor": "#000000",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "主页"
+            },
+            {
+                "pagePath": "pages/request/index",
+                "text": "订单"
+            },
+            {
+                "pagePath": "pages/calendar/index",
+                "text": "日历"
+            },
+            {
+                "pagePath": "pages/messages/index",
+                "text": "消息"
+            },
+            {
+                "pagePath": "pages/profile/index",
+                "text": "我的"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents",
+    "usingComponents": {
+        "van-button": "@vant/weapp/button/index",
+        "van-cell": "@vant/weapp/cell/index",
+        "van-cell-group": "@vant/weapp/cell-group/index",
+        "van-calendar": "@vant/weapp/calendar/index",
+        "van-picker": "@vant/weapp/picker/index",
+        "van-search": "@vant/weapp/search/index",
+        "van-icon": "@vant/weapp/icon/index",
+        "van-radio": "@vant/weapp/radio/index",
+        "van-radio-group": "@vant/weapp/radio-group/index",
+        "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+        "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+        "van-stepper": "@vant/weapp/stepper/index",
+        "van-uploader": "@vant/weapp/uploader/index",
+        "van-skeleton": "@vant/weapp/skeleton/index",
+        "van-empty": "@vant/weapp/empty/index",
+        "van-action-sheet": "@vant/weapp/action-sheet/index",
+        "van-dialog": "@vant/weapp/dialog/index",
+        "van-loading": "@vant/weapp/loading/index",
+        "van-popup": "@vant/weapp/popup/index",
+        "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+        "van-field": "@vant/weapp/field/index",
+        "van-divider": "@vant/weapp/divider/index",
+        "van-goods-action": "@vant/weapp/goods-action/index",
+        "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
+        "van-goods-action-button": "@vant/weapp/goods-action-button/index",
+        "van-card": "@vant/weapp/card/index",
+        "van-rate": "@vant/weapp/rate/index",
+        "van-nav-bar": "@vant/weapp/nav-bar/index",
+        "van-row": "@vant/weapp/row/index",
+        "van-col": "@vant/weapp/col/index",
+        "van-progress": "@vant/weapp/progress/index",
+        "van-tabbar": "@vant/weapp/tabbar/index",
+        "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+        "van-tab": "@vant/weapp/tab/index",
+        "van-tabs": "@vant/weapp/tabs/index"
+    }
+}

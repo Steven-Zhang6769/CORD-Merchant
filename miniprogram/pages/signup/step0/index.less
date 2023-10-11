@@ -1,0 +1,85 @@
+.body {
+    .header {
+        margin-top: 20rpx;
+    }
+    .form {
+        width: 90%;
+        margin: 0 auto;
+        .title {
+            margin-top: 80rpx;
+            text-align: center;
+            color: #323232;
+            font-size: 29px;
+            font-family: "Mulish";
+            line-height: 37px;
+        }
+        .categories {
+            margin-top: 50rpx;
+            .category {
+                margin-top: 50rpx;
+                height: 180rpx;
+                background-color: #f4f4f4;
+                border-radius: 16rpx;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                &.selected {
+                    background-color: rgba(54, 148, 114, 0.7);
+                    .category-name {
+                        color: #fafafa;
+                    }
+                    .check {
+                        image {
+                            display: block; // make the check icon visible when selected
+                            width: 75rpx;
+                            height: 75rpx;
+                        }
+                    }
+                }
+                .category-icon {
+                    margin-left: 20rpx;
+                    image {
+                        width: 130rpx;
+                        height: 130rpx;
+                    }
+                }
+                .category-name {
+                    margin-left: 40rpx;
+                    min-width: 57%;
+                    color: #6f6f6f;
+                    font-size: 20px;
+                    font-family: "Mulish";
+                    font-weight: 400;
+                    line-height: 26px;
+                }
+                .check {
+                    text-align: left;
+                    min-width: 20%;
+                    image {
+                        display: none; // hide the check icon by default
+                    }
+                }
+            }
+        }
+    }
+}
+.footer {
+    position: absolute;
+    bottom: 90rpx;
+    width: 100%;
+    .next {
+        width: 85%;
+        margin: 0 auto;
+        height: 90rpx;
+        background-color: #359472;
+        border-radius: 50rpx;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 33rpx;
+        font-family: PingFangSC-Semibold;
+    }
+}

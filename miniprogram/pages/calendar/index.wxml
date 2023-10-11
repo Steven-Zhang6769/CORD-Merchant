@@ -1,0 +1,35 @@
+<van-nav-bar>
+    <view class="h1" slot="left" fixed>日历</view>
+</van-nav-bar>
+<view class="body">
+    <van-calendar
+    title="日历"
+    poppable="{{ false }}"
+    show-confirm="{{ false }}"
+    class="calendar"
+    />
+</view>
+<van-tabbar active="{{ active }}" bind:change="onTabChange" active-color="#359472" fixed="true">
+    <van-tabbar-item>
+        <van-icon name="shop-o" slot="icon" />
+        <van-icon name="shop" slot="icon-active" color="#359472" />主页
+    </van-tabbar-item>
+    <van-tabbar-item>
+        <van-icon name="todo-list-o" slot="icon" />
+        <van-icon name="todo-list" slot="icon-active" color="#359472" />订单
+    </van-tabbar-item>
+    <van-tabbar-item>
+        <van-icon name="notes-o" slot="icon" />
+        <van-icon name="notes-o" slot="icon-active" color="#359472" />日历</van-tabbar-item
+    >
+    <van-tabbar-item>
+        <van-icon name="chat-o" slot="icon" />
+        <van-icon name="chat" slot="icon-active" color="#359472" />
+        私信</van-tabbar-item
+    >
+    <van-tabbar-item>
+        <van-icon name="manager-o" slot="icon" />
+        <van-icon name="manager" slot="icon-active" color="#359472" />
+        我的</van-tabbar-item
+    >
+</van-tabbar>

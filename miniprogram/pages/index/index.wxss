@@ -1,0 +1,48 @@
+page {
+  background-color: #f6f6f6;
+}
+.name {
+  color: #323232;
+  font-size: 44rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 500;
+}
+.body .loading {
+  margin: 0px, auto;
+  margin-top: 65rpx;
+  margin-bottom: 45rpx;
+}
+.body .swiper {
+  margin: 0px, auto;
+  margin-top: 65rpx;
+}
+.body .welcome {
+  width: 95%;
+  margin: 0px auto;
+  margin-top: 30rpx;
+  padding: 25rpx 0rpx;
+  background-color: #369472;
+  box-shadow: 0px 2px 10px rgba(3, 3, 3, 0.1);
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.body .welcome .title {
+  margin-left: 35rpx;
+}
+.body .welcome .title .h2 {
+  color: white;
+}
+.body .welcome .title .h3 {
+  margin-top: 23rpx;
+}
+.body .welcome image {
+  margin-right: 35rpx;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+}
+.body .review {
+  margin-bottom: 30rpx;
+}

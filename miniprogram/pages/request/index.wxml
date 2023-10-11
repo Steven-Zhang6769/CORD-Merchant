@@ -1,0 +1,67 @@
+<van-nav-bar>
+    <view class="h1" slot="left" fixed>订单</view>
+</van-nav-bar>
+<view class="body">
+    <van-tabs active="{{ active }}" bind:change="onCategoryChange" animated swipeable color="#359472" title-active-color="#359472">
+        <van-tab title="待审核"> </van-tab>
+        <van-tab title="已付款"> </van-tab>
+        <van-tab title="已拒绝"> </van-tab>
+        <van-tab title="已结束"> </van-tab>
+    </van-tabs>
+
+    <van-skeleton title avatar row="4" loading="{{ loading }}" custom-class="loading" />
+    <view class="foodRow" wx:for="{{ orders }}" bindtap="foodOrderNavigator" data-orderid="{{ item._id }}">
+        <view class="topInfo">
+            <view class="left">
+                <view class="storeInfo">
+                    <view class="thumb">
+                        <image src="{{ merchantData.coverPic }}" mode="aspectFill"></image>
+                    </view>
+                    <view class="storeDetail">
+                        <view class="merchantName">{{ merchantData.title }}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="line"></view>
+        <van-card
+            custom-class="card"
+            thumb-class="thumb"
+            title-class="cardTitle"
+            price-class="cardPrice"
+            desc-class="cardDescription"
+            num-class="cardNum"
+            thumb-mode="aspectFill"
+            wx:for="{{ item.foodOrder }}"
+            wx:if="{{ item.num && item.num != 0 }}"
+            num="{{ item.num }}"
+            price="{{ item.price }}"
+            desc="{{ item.itemDescription }}"
+            title="{{ item.itemName }}"
+            thumb="{{ item.picture }}" />
+    </view>
+</view>
+<van-tabbar active="{{ active }}" bind:change="onTabChange" active-color="#359472" fixed="true">
+    <van-tabbar-item>
+        <van-icon name="shop-o" slot="icon" />
+        <van-icon name="shop" slot="icon-active" color="#359472" />主页
+    </van-tabbar-item>
+    <van-tabbar-item>
+        <van-icon name="todo-list-o" slot="icon" />
+        <van-icon name="todo-list" slot="icon-active" color="#359472" />订单
+    </van-tabbar-item>
+    <van-tabbar-item>
+        <van-icon name="notes-o" slot="icon" />
+        <van-icon name="notes-o" slot="icon-active" color="#359472" />日历</van-tabbar-item
+    >
+    <van-tabbar-item>
+        <van-icon name="chat-o" slot="icon" />
+        <van-icon name="chat" slot="icon-active" color="#359472" />
+        私信</van-tabbar-item
+    >
+    <van-tabbar-item>
+        <van-icon name="manager-o" slot="icon" />
+        <van-icon name="manager" slot="icon-active" color="#359472" />
+        我的</van-tabbar-item
+    >
+</van-tabbar>

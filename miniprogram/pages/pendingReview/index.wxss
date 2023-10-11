@@ -1,0 +1,32 @@
+.body .content {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.body .content image {
+  width: 345rpx;
+  height: 345rpx;
+  border-radius: 25rpx;
+}
+.body .content .title {
+  margin-top: 55rpx;
+  text-align: center;
+  color: #323232;
+  font-size: 60rpx;
+  font-family: "Mulish";
+  line-height: 37px;
+}
+.body .content .subtitle {
+  margin-top: 30rpx;
+  color: #737373;
+  font-size: 30rpx;
+  font-family: "Mulish";
+  line-height: 25px;
+  text-align: center;
+}
+.body .content .english {
+  font-size: 24rpx;
+}

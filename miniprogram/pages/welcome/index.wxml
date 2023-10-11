@@ -1,0 +1,17 @@
+<view class="body">
+    <view class="header">
+        <view class="title"><text>Welcome\nMerchant!</text></view>
+        <view class="poster">
+            <image src="../../images/welcome/poster.png" mode="aspectFit"></image>
+        </view>
+    </view>
+    <view class="slogan-bg">
+        <view class="text">
+            <view class="title"><p class="large">CORD</p><p class="small">是什么?</p></view>
+            <view class="content">CORD is an online application based platform targeting Chinese international students in which students can provide services such as tutoring, cooking, or even entertainment to one another. We are seamlessly reconnecting self-isolated student merchants with the untapped audiences of the international student community.</view>
+        </view>
+    </view>
+</view>
+<view class="footer" bindtap="signupNavigator">
+    <text>点击注册</text>
+</view>

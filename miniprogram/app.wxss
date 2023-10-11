@@ -1,0 +1,150 @@
+.h1 {
+  font-size: 44rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 500;
+  color: #323232;
+}
+.h2 {
+  font-size: 38rpx;
+  font-family: PingFangSC;
+  font-weight: 450;
+}
+.h3 {
+  font-size: 30rpx;
+  font-family: PingFangSC;
+  font-weight: 320;
+  color: #f6f6f6;
+}
+.h4 {
+  color: #323232;
+  font-size: 24rpx;
+  font-family: PingfangSC;
+  font-weight: 250;
+  line-height: 28rpx;
+}
+.card {
+  width: 85%;
+  margin: 0px auto;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0px 2px 10px rgba(3, 3, 3, 0.1);
+  padding: 35rpx;
+  margin-top: 25rpx;
+}
+.card .card-title {
+  color: #000000;
+  font-size: 44rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 600;
+  line-height: 58rpx;
+}
+.card .card-subtitle {
+  color: #323232;
+  font-size: 24rpx;
+  font-family: PingfangSC;
+  font-weight: 250;
+  line-height: 28rpx;
+  margin-top: 20rpx;
+}
+view.info {
+  display: flex;
+  width: 100%;
+  padding-top: 70rpx;
+}
+view.info view.info_row {
+  flex: 33%;
+  max-width: 33%;
+  margin-right: 4px;
+  text-align: center;
+}
+view.info view.info_row view.number {
+  color: #323232;
+  font-size: 30rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 800;
+  line-height: 18px;
+}
+view.info view.info_row .title {
+  margin-top: 20rpx;
+  font-family: PingFangSC;
+  font-size: 20rpx;
+  color: #9f9f9f;
+}
+view.info view.info_row view.vertical_line {
+  border-right: 1px solid #d9d9d9;
+  height: 20px;
+  margin-top: -35px;
+}
+view.orderRow {
+  background-color: #f6f6f6;
+  border-radius: 25rpx;
+  box-shadow: 0px 2px 10px rgba(3, 3, 3, 0.1);
+  padding: 33rpx 0rpx;
+  display: flex;
+  align-items: center;
+}
+view.orderRow view.left {
+  flex: 25%;
+  text-align: center;
+}
+view.orderRow view.left image {
+  width: 122rpx;
+  height: 122rpx;
+  border-radius: 50%;
+}
+view.orderRow view.middle {
+  color: #363938;
+  text-align: left;
+  flex: 51%;
+}
+view.orderRow view.middle view.serviceName {
+  padding-top: 6px;
+  font-family: PingFangSC-Semibold;
+  font-size: 33rpx;
+}
+view.orderRow view.middle .detail {
+  margin-top: 15rpx;
+  color: #9f9f9f;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+}
+view.orderRow view.middle .detail text.iconfont {
+  color: #369472;
+  font-size: 13px;
+}
+view.orderRow view.middle view.line {
+  margin-top: 23rpx;
+  margin-bottom: 23rpx;
+  width: 90%;
+  height: 1rpx;
+  background-color: #e4e5e5;
+}
+view.orderRow view.right {
+  flex: 22%;
+  text-align: center;
+}
+view.orderRow view.right view.price {
+  border-radius: 8px;
+  font-family: PingFangSC-Semibold;
+  font-size: 47rpx;
+}
+view.orderRow view.right view.status {
+  margin-top: 20rpx;
+}
+view.orderRow view.right view.status text {
+  font-family: PingFangSC;
+  font-size: 24rpx;
+  color: #fafcfc;
+  padding: 5px 7px 5px 7px;
+  border-radius: 8px;
+}
+view.orderRow view.pending view.price {
+  color: #f9cf29;
+}
+view.orderRow view.pending view.status text {
+  background-color: #f9cf29;
+}
+.van-tabbar-item__text {
+  font-size: 21rpx;
+  font-family: PingFangSC-Regular;
+}

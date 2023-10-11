@@ -1,0 +1,236 @@
+page {
+    background-color: #f6f6f6;
+}
+
+.body {
+    view.header {
+        text-align: center;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        view.wrapper {
+            padding: 0rpx 0rpx 15rpx 0rpx;
+            backdrop-filter: blur(10px);
+            height: 50%;
+            background: rgba(9, 9, 9, 0.5);
+
+            image {
+                width: 220rpx;
+                height: 220rpx;
+                border-radius: 50%;
+            }
+
+            view.text {
+                margin-top: 10px;
+                font-size: 45rpx;
+                font-family: PingFangSC-Semibold;
+                color: #fafcfc;
+            }
+
+            view.buttons {
+                margin: 0px auto;
+                width: 76%;
+                display: flex;
+                justify-content: space-between;
+
+                button {
+                    padding: 0rpx 35rpx 0rpx 35rpx;
+                    display: inline-block;
+                    background: #fafcfc;
+                    border-radius: 8px;
+                    font-family: PingFangSC;
+                    font-size: 23rpx;
+                    font-weight: 450;
+                    color: #000000;
+                    margin-top: 33rpx;
+                    margin-bottom: 40px;
+                }
+            }
+        }
+    }
+
+    view.merchantBody {
+        position: relative;
+        z-index: 10;
+        background-color: #f6f6f6;
+        border-radius: 23px;
+        margin-top: -20px;
+        padding-bottom: 1px;
+        padding-top: 30rpx;
+
+        .storeInfo {
+            margin-top: 60rpx;
+
+            .wrapper {
+                display: flex;
+
+                view.info_row {
+                    flex: 33%;
+                    max-width: 33%;
+                    margin-right: 4px;
+                    text-align: center;
+
+                    .title {
+                        font-family: PingFangSC;
+                        font-size: 20rpx;
+                        color: #9f9f9f;
+                    }
+
+                    .icon {
+                        margin-top: 20rpx;
+                    }
+
+                    view.desc {
+                        margin-top: 21rpx;
+                        font-family: PingFangSC;
+                        font-weight: 450;
+                        font-size: 21rpx;
+                        color: #656565;
+                    }
+
+                    view.vertical_line {
+                        border-right: 1px solid #d9d9d9;
+                        height: 20px;
+                        margin-top: -40px;
+                    }
+                }
+            }
+
+            view.addService {
+                width: 30%;
+                margin: 0px auto;
+                margin-top: 50rpx;
+                text-align: center;
+                background: rgba(54, 148, 114, 0.8);
+                border-radius: 20rpx;
+                font-family: PingFangSC;
+                font-size: 25rpx;
+                color: #fafcfc;
+                padding: 20rpx 0rpx 20rpx 0rpx;
+            }
+        }
+
+        .services {
+            width: 93%;
+            margin: 0px auto;
+            margin-top: 35rpx;
+
+            view.serviceRow {
+                border-radius: 8px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                background-color: white;
+                box-shadow: 0px 5px 12px #ebedf0;
+                display: flex;
+                align-items: center;
+                padding: 15px 0px 15px 0px;
+
+                view.left {
+                    flex: 27%;
+                    max-width: 27%;
+                    text-align: center;
+
+                    image {
+                        width: 140rpx;
+                        height: 140rpx;
+                        border-radius: 30rpx;
+                    }
+                }
+
+                view.middle {
+                    color: #000000;
+                    text-align: left;
+                    flex: 55%;
+                    max-width: 55%;
+
+                    view.serviceTitle {
+                        padding-top: 5px;
+                        font-family: PingFangSC-Medium;
+                        font-size: 33rpx;
+                    }
+
+                    view.line {
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        width: 90%;
+                        height: 1rpx;
+                        background-color: #e4e5e5;
+                    }
+
+                    view.serviceDescription {
+                        text {
+                            color: #369472;
+                            font-size: 13px;
+                        }
+
+                        color: #9f9f9f;
+                        font-family: PingFangSC-Regular;
+                        font-size: 10px;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        word-wrap: break-word;
+                        white-space: normal !important;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+
+                view.right {
+                    flex: 14%;
+                    max-width: 14%;
+
+                    view.price {
+                        text-align: center;
+                        width: 100%;
+                        background: rgba(54, 148, 114, 0.8);
+                        border-radius: 8px;
+                        font-family: PingFangSC;
+                        font-size: 24rpx;
+                        color: #fafcfc;
+                        padding: 5px 0px 5px 0px;
+                    }
+                }
+            }
+
+            view.addService {
+                width: 30%;
+                margin: 0px auto;
+                text-align: center;
+                background: rgba(54, 148, 114, 0.8);
+                border-radius: 20rpx;
+                font-family: PingFangSC;
+                font-size: 25rpx;
+                color: #fafcfc;
+                padding: 16rpx 0rpx 16rpx 0rpx;
+            }
+        }
+
+        .setting {
+            margin: 0px auto;
+            margin-top: 35rpx;
+            margin-bottom: 200rpx;
+
+            .cellGroup {
+                margin-top: 40rpx;
+                padding: 5px 15px 5px 15px;
+                .cell {
+                    padding: 10px 0px;
+                }
+            }
+
+            button {
+                background-color: #fff;
+                padding: 0;
+                margin: 0;
+                font-size: inherit;
+                text-align: left;
+            }
+
+            button::after {
+                border: #fff solid;
+            }
+        }
+    }
+}

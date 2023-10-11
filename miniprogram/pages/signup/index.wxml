@@ -1,0 +1,10 @@
+<view class="body">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" plain="true">
+        <van-icon name="add" color="#359472" wx:if="{{ !changed }}" custom-class="icon" size="47px" />
+        <image class="avatar" src="{{ avatar }}" mode="aspectFill"></image>
+    </button>
+    <input class="input" placeholder="请输入店主昵称" bindinput="nameChanged" />
+</view>
+<view class="footer">
+    <van-button type="primary" size="large" bindtap="next" custom-class="next">下一步</van-button>
+</view>

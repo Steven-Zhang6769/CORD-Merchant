@@ -1,0 +1,134 @@
+<view class="body">
+    <view class="header">
+        <van-progress percentage="75" color="#369472" />
+    </view>
+    <view class="form">
+        <view class="title"> 输入详细店铺信息 </view>
+        <view class="subtitle"> 请认真填写，这会帮助我们更好了解和审查你的店铺 </view>
+    </view>
+    <view class="cells">
+        <van-cell-group inset title="基本信息" custom-class="cellGroup">
+            <van-field
+                custom-class="text-field"
+                value="{{ value }}"
+                placeholder="请输入店铺名"
+                border="{{ true }}"
+                label="店铺名"
+                bind:change="onChange"
+                data-field="title"
+                required />
+            <van-field
+                custom-class="text-field"
+                value="{{ value }}"
+                placeholder="请写出店铺的具体描述"
+                type="textarea"
+                border="{{ true }}"
+                label="具体描述"
+                bind:change="onChange"
+                autosize
+                data-field="subTitle"
+                required />
+            <van-field
+                custom-class="text-field"
+                value="{{ value }}"
+                placeholder="请输入负责人中文名"
+                type="textarea"
+                border="{{ true }}"
+                label="负责人名称"
+                bind:change="onChange"
+                autosize
+                data-field="ownerName"
+                required></van-field>
+            <van-field
+                custom-class="text-field"
+                value="{{ value }}"
+                placeholder="请输入负责人微信号"
+                type="textarea"
+                border="{{ true }}"
+                label="负责人微信号"
+                bind:change="onChange"
+                autosize
+                data-field="ownerWechat"
+                required></van-field>
+        </van-cell-group>
+        <van-cell-group inset title="店铺地址" custom-class="cellGroup">
+            <van-field
+                custom-class="text-field"
+                value="{{ value }}"
+                placeholder="请输入店铺的地址名称"
+                border="{{ true }}"
+                label="地址名称"
+                bind:change="onChange"
+                data-field="locationName" />
+            <van-field
+                custom-class="text-field"
+                value="{{ value }}"
+                placeholder="请输入店铺的详细地址（街道等）"
+                border="{{ true }}"
+                label="详细地址"
+                bind:change="onChange"
+                data-field="locationDetail"
+                required />
+        </van-cell-group>
+        <van-cell-group inset title="时间信息" custom-class="cellGroup">
+            <van-field
+                custom-class="text-field"
+                value="{{ value }}"
+                placeholder="ex:周一到周五9:00-20:00"
+                type="textarea"
+                border="{{ true }}"
+                label="详细工作时间"
+                bind:change="onChange"
+                data-field="availableTimes" />
+        </van-cell-group>
+        <van-cell-group inset title="价格信息" custom-class="cellGroup">
+            <van-field
+                custom-class="text-field"
+                value="{{ value }}"
+                placeholder="美元收款方式(zelle名字+手机号/etc)"
+                type="textarea"
+                border="{{ true }}"
+                label="美元收款方式"
+                bind:change="onChange"
+                autosize
+                data-field="paymentInfo"
+                required />
+        </van-cell-group>
+        <van-cell-group inset title="封面图(一张)">
+            <view class="uploader">
+                <van-uploader
+                    max-count="{{ 1 }}"
+                    file-list="{{ coverFilelist }}"
+                    bind:after-read="addCover"
+                    bind:delete="deleteCover"
+                    deletable="{{ true }}"
+                    preview-size="100px">
+                    <view class="upload">
+                        <image src="../../../images/signup/upload.png"></image>
+                        <view class="text">点击上传封面图</view>
+                        <van-button size="small" custom-class="upload-button">上传</van-button>
+                    </view>
+                </van-uploader>
+            </view>
+        </van-cell-group>
+        <van-cell-group inset title="店铺展示图(可多张)">
+            <view class="uploader">
+                <van-uploader
+                    file-list="{{ detailFilelist }}"
+                    bind:after-read="addDetail"
+                    bind:delete="deleteDetail"
+                    deletable="{{ true }}"
+                    preview-size="100px">
+                    <view class="upload">
+                        <image src="../../../images/signup/upload.png"></image>
+                        <view class="text">点击上传展示图</view>
+                        <van-button size="small" custom-class="upload-button">上传</van-button>
+                    </view>
+                </van-uploader>
+            </view>
+        </van-cell-group>
+    </view>
+</view>
+<view class="footer">
+    <van-button type="primary" size="large" bindtap="submit" custom-class="next">提交申请</van-button>
+</view>

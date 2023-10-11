@@ -1,0 +1,56 @@
+.body .header {
+  margin-top: 20rpx;
+}
+.body .form {
+  width: 90%;
+  margin: 0 auto;
+}
+.body .form .title {
+  margin-top: 80rpx;
+  text-align: center;
+  color: #323232;
+  font-size: 29px;
+  font-family: "Mulish";
+  line-height: 37px;
+}
+.body .form .subtitle {
+  margin-top: 43rpx;
+  color: #737373;
+  font-size: 30rpx;
+  font-family: "Mulish";
+  line-height: 21px;
+  text-align: center;
+}
+.body .form .input {
+  margin-top: 80rpx;
+}
+.body .form .input .field {
+  border-radius: 20rpx;
+  align-items: center;
+  height: 100rpx;
+  font-size: 32rpx;
+  background-color: #f2f2f2;
+  border-radius: 32px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+}
+.footer {
+  position: absolute;
+  bottom: 90rpx;
+  width: 100%;
+}
+.footer .next {
+  width: 85%;
+  margin: 0 auto;
+  height: 90rpx;
+  background-color: #359472;
+  border-radius: 50rpx;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 33rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 300;
+  line-height: 37px;
+}

@@ -1,0 +1,12 @@
+<view class="body">
+    <view class="content">
+        <view class="logo">
+            <image src="../../images/logo_green.png" mode="aspectFill"></image>
+        </view>
+        <view class="title">正在审核</view>
+        <view class="subtitle">你的店铺正在审核中，请耐心等待</view>
+        <view class="subtitle">我们会尽快在微信联系你</view>
+        <view class="subtitle english">Your store is currently under review</view>
+        <view class="subtitle"></view>
+    </view>
+</view>

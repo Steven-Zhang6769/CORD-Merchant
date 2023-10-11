@@ -1,0 +1,122 @@
+page {
+  background-color: #f6f6f6;
+}
+.body .loading {
+  margin: 0px, auto;
+  margin-top: 65rpx;
+}
+.body view.foodRow {
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 12px #ebedf0;
+  padding: 33rpx 25rpx 23rpx 25rpx;
+}
+.body view.foodRow view.topInfo {
+  display: flex;
+  align-items: center;
+}
+.body view.foodRow view.topInfo .left {
+  color: #363938;
+  text-align: left;
+  flex: 90%;
+}
+.body view.foodRow view.topInfo .left .storeInfo {
+  display: flex;
+  align-items: center;
+}
+.body view.foodRow view.topInfo .left .storeInfo .thumb {
+  flex: 30%;
+}
+.body view.foodRow view.topInfo .left .storeInfo .thumb image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+.body view.foodRow view.topInfo .left .storeInfo .storeDetail {
+  flex: 70%;
+}
+.body view.foodRow view.topInfo .left .storeInfo .storeDetail .merchantName {
+  font-family: PingFangSC-Semibold;
+  font-size: 33rpx;
+}
+.body view.foodRow view.topInfo .left .storeInfo .storeDetail .detail {
+  margin-top: 30rpx;
+  margin-left: -6rpx;
+  color: #9f9f9f;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+}
+.body view.foodRow view.topInfo .left .storeInfo .storeDetail .detail .iconfont {
+  color: #369472;
+  font-size: 13px;
+}
+.body view.foodRow view.topInfo .right {
+  flex: 20%;
+  margin-top: -10rpx;
+  text-align: center;
+}
+.body view.foodRow view.topInfo .right view.price {
+  border-radius: 8px;
+  font-family: PingFangSC-Semibold;
+  font-size: 47rpx;
+}
+.body view.foodRow view.topInfo .right view.status {
+  margin-top: 12rpx;
+}
+.body view.foodRow view.topInfo .right view.status text {
+  font-family: PingFangSC;
+  font-size: 24rpx;
+  color: white;
+  padding: 5px 7px 5px 7px;
+  border-radius: 8px;
+}
+.body view.foodRow view.topInfo .right view.pending view.price {
+  color: #f9cf29;
+}
+.body view.foodRow view.topInfo .right view.pending view.status text {
+  background-color: #f9cf29;
+}
+.body view.foodRow view.topInfo .right view.paid view.price {
+  color: #369472;
+}
+.body view.foodRow view.topInfo .right view.paid view.status text {
+  background-color: #369472;
+}
+.body view.foodRow view.line {
+  margin: 0px auto;
+  margin-top: 25rpx;
+  margin-bottom: 21rpx;
+  width: 95%;
+  height: 1rpx;
+  background-color: #e4e5e5;
+}
+.body view.foodRow .card {
+  background-color: #fff;
+  padding: 30rpx 0rpx;
+  padding-left: 10rpx;
+  padding-right: 30rpx;
+}
+.body view.foodRow .card .cardTitle {
+  margin-left: 8rpx;
+  font-family: PingFangSC;
+  font-weight: 540;
+  font-size: 28rpx;
+}
+.body view.foodRow .card .cardDescription {
+  margin-top: 15rpx;
+  margin-left: 8rpx;
+  font-size: 21rpx;
+  color: #9f9f9f;
+}
+.body view.foodRow .card .cardPrice {
+  margin-left: 8rpx;
+  font-family: PingFangSC;
+  color: #363938;
+}
+.body view.foodRow .card .cardNum {
+  color: #656565;
+}
+.body view.foodRow .card .thumb {
+  border-radius: 20rpx;
+}

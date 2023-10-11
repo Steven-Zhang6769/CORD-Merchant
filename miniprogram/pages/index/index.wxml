@@ -1,0 +1,115 @@
+<van-nav-bar>
+    <view class="h1" slot="left" fixed>店铺主页</view>
+</van-nav-bar>
+<view class="body">
+    <view class="card request">
+        <view class="card-title">订单概览</view>
+        <view class="card-subtitle">看看你的最新订单</view>
+        <view class="info">
+            <view class="info_row">
+                <view class="number">
+                    <text>{{ allOrders ? allOrders.length : 0 }}</text>
+                </view>
+                <view class="title">全部</view>
+                <view class="vertical_line"></view>
+            </view>
+            <view class="info_row" bindtap="openLocation">
+                <view class="number">
+                    <text>{{ pendingOrders ? pendingOrders.length : 0 }}</text>
+                </view>
+                <view class="title">待审核</view>
+                <view class="vertical_line"></view>
+            </view>
+            <view class="info_row">
+                <view class="number">
+                    <text>{{ paidOrders ? paidOrders.length : 0 }}</text>
+                </view>
+                <view class="title">进行中</view>
+            </view>
+        </view>
+        <view class="swiper">
+            <swiper wx:if="{{ !loading }}" autoplay circular indicator-dots indicator-active-color="#369472" interval="7000">
+                <swiper-item class="swiper-item" wx:for="{{ pendingOrders }}">
+                    <view class="orderRow" bindtap="orderNavigator" data-orderid="{{ item._id }}">
+                        <view class="left">
+                            <image src="{{ item.serviceData.picture }}" mode="aspectFill"></image>
+                        </view>
+                        <view class="middle">
+                            <view class="serviceName">{{ item.serviceData.serviceName }}</view>
+                            <view class="line"></view>
+                            <view class="detail">
+                                <van-icon name="clock-o" color="#359472" />
+                                {{ item.reservationDate }}
+                            </view>
+                        </view>
+                        <view class="right pending">
+                            <view class="price">${{ item.transactionData.amount }}</view>
+                            <view class="status"><text>待审核</text></view>
+                        </view>
+                    </view>
+                </swiper-item>
+            </swiper>
+            <van-skeleton title avatar row="2" loading="{{ loading }}" custom-class="loading" />
+        </view>
+    </view>
+    <view class="welcome">
+        <view class="title">
+            <view class="h2">欢迎回来，{{ ownerData.username }}</view>
+            <view class="h3">查看现存订单 <van-icon name="arrow" /></view>
+        </view>
+        <view class="profilePic">
+            <image src="{{ ownerData.profilePic }}"></image>
+        </view>
+    </view>
+    <view class="card review">
+        <view class="card-title">用户评分</view>
+        <view class="card-subtitle">你的评分已超过99%的商户</view>
+        <view class="info">
+            <view class="info_row">
+                <view class="number">
+                    <text>{{ ratingCount }}</text>
+                </view>
+                <view class="title">总评价数</view>
+                <view class="vertical_line"></view>
+            </view>
+            <view class="info_row" bindtap="openLocation">
+                <view class="number">
+                    <text>{{ recentAvgRating }}</text>
+                </view>
+                <view class="title">最新评分</view>
+                <view class="vertical_line"></view>
+            </view>
+            <view class="info_row">
+                <view class="number">
+                    <van-icon name="star" color="#FFCD22" />
+                    <text style="margin-left: 5rpx">{{ avgRating }}</text>
+                </view>
+                <view class="title">历史平均</view>
+            </view>
+        </view>
+    </view>
+</view>
+<van-tabbar active="{{ active }}" bind:change="onTabChange" active-color="#359472" fixed="true">
+    <van-tabbar-item>
+        <van-icon name="shop-o" slot="icon" />
+        <van-icon name="shop" slot="icon-active" color="#359472" />主页
+    </van-tabbar-item>
+    <van-tabbar-item>
+        <van-icon name="todo-list-o" slot="icon" />
+        <van-icon name="todo-list" slot="icon-active" color="#359472" />订单
+    </van-tabbar-item>
+    <van-tabbar-item>
+        <van-icon name="notes-o" slot="icon" />
+        <van-icon name="notes-o" slot="icon-active" color="#359472" />日历</van-tabbar-item
+    >
+    <van-tabbar-item>
+        <van-icon name="chat-o" slot="icon" />
+        <van-icon name="chat" slot="icon-active" color="#359472" />
+        私信</van-tabbar-item
+    >
+    <van-tabbar-item>
+        <van-icon name="manager-o" slot="icon" />
+        <van-icon name="manager" slot="icon-active" color="#359472" />
+        我的</van-tabbar-item
+    >
+</van-tabbar>

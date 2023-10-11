@@ -1,0 +1,21 @@
+<view class="body">
+    <view class="header">
+        <van-progress percentage="50" color="#369472" />
+    </view>
+    <view class="form">
+        <view class="title"> 你的Hashtag是什么？ </view>
+        <view class="subtitle"> 归类你的具体服务类型，让用户更好找到你 </view>
+        <view class="input">
+            <van-field
+                value="{{ hashtag }}"
+                placeholder="SAT辅导，约拍，剧本杀室..."
+                border="{{ false }}"
+                bind:change="onHashtagChange"
+                custom-class="field"
+                input-align="center" />
+        </view>
+    </view>
+</view>
+<view class="footer" wx:if="{{ hashtag }}">
+    <van-button type="primary" size="large" bindtap="next" custom-class="next">下一步</van-button>
+</view>

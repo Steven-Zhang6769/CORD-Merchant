@@ -1,0 +1,46 @@
+<view class="body">
+    <view class="header">
+        <van-progress percentage="25" color="#369472" />
+    </view>
+    <view class="form">
+        <view class="title"> 你的服务的分类是什么？ </view>
+        <view class="categories">
+            <view class="category {{ category === 'learning' ? 'selected' : '' }}" bindtap="selectCategory" data-category="learning">
+                <view class="category-icon">
+                    <image src="../../../images/signup/learning.png" mode="aspectFit"></image>
+                </view>
+                <view class="category-name">
+                    <text>Leaning 学习</text>
+                </view>
+                <view class="check">
+                    <image src="../../../images/signup/check.png" mode="aspectFill"></image>
+                </view>
+            </view>
+            <view class="category {{ category === 'service' ? 'selected' : '' }}" bindtap="selectCategory" data-category="service">
+                <view class="category-icon">
+                    <image src="../../../images/signup/service.png" mode="aspectFit"></image>
+                </view>
+                <view class="category-name">
+                    <text>Service 服务</text>
+                </view>
+                <view class="check">
+                    <image src="../../../images/signup/check.png" mode="aspectFit"></image>
+                </view>
+            </view>
+            <view class="category {{ category === 'entertainment' ? 'selected' : '' }}" bindtap="selectCategory" data-category="entertainment">
+                <view class="category-icon">
+                    <image src="../../../images/signup/entertainment.PNG" mode="aspectFit"></image>
+                </view>
+                <view class="category-name">
+                    <text>Entertainment 娱乐</text>
+                </view>
+                <view class="check">
+                    <image src="../../../images/signup/check.png" mode="aspectFit"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="footer" wx:if="{{ category }}">
+    <van-button type="primary" size="large" bindtap="next" custom-class="next">下一步</van-button>
+</view>
