@@ -3,11 +3,30 @@
 </van-nav-bar>
 <view class="body">
     <van-calendar
-    title="日历"
-    poppable="{{ false }}"
-    show-confirm="{{ false }}"
-    class="calendar"
-    />
+        title="日历"
+        poppable="{{ false }}"
+        class="calendar"
+        type="single"
+        color="#359472"
+        show-mark="{{ false }}"
+        show-confirm="{{ false }}"
+        show-title="{{ false }}"
+        bind:confirm="onConfirmDate" />
+</view>
+<van-skeleton title avatar row="3" loading="{{ loading }}" custom-class="loading" />
+<view class="h4" style="text-align: center" wx:if="{{ !loading && orders.length == 0 }}">当日无订单</view>
+<view class="orders" wx:if="{{ !loading && orders.length > 0 }}">
+    <van-cell-group inset title="当日订单">
+        <van-cell
+            wx:for="{{ orders }}"
+            custom-class="orderCell"
+            title-class="userInfo"
+            bind:click="orderNavigator"
+            data-orderid="{{ item._id }}"
+            title="{{ item.participantData.username }}"
+            label="{{ item.formattedReservationTime }}"
+            value="${{ item.total }}" />
+    </van-cell-group>
 </view>
 <van-tabbar active="{{ active }}" bind:change="onTabChange" active-color="#359472" fixed="true">
     <van-tabbar-item>

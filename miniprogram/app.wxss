@@ -1,26 +1,44 @@
 .h1 {
   font-size: 44rpx;
-  font-family: PingFangSC-Semibold;
   font-weight: 500;
   color: #323232;
 }
 .h2 {
   font-size: 38rpx;
-  font-family: PingFangSC;
   font-weight: 450;
+  color: #323232;
 }
 .h3 {
-  font-size: 30rpx;
-  font-family: PingFangSC;
-  font-weight: 320;
-  color: #f6f6f6;
+  font-size: 35rpx;
+  font-weight: 450;
+  color: #323232;
 }
 .h4 {
+  font-size: 30rpx;
+  font-weight: 320;
   color: #323232;
+}
+.h5 {
+  font-size: 26rpx;
+  color: #656565;
+}
+.h6 {
   font-size: 24rpx;
-  font-family: PingfangSC;
   font-weight: 250;
   line-height: 28rpx;
+  color: #323232;
+}
+.h7 {
+  margin-top: 8rpx;
+  font-weight: 100;
+  font-size: 23rpx;
+  color: #656565;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 .card {
   width: 85%;
@@ -46,103 +64,208 @@
   line-height: 28rpx;
   margin-top: 20rpx;
 }
-view.info {
+.info {
   display: flex;
   width: 100%;
   padding-top: 70rpx;
 }
-view.info view.info_row {
+.info .info_row {
   flex: 33%;
   max-width: 33%;
   margin-right: 4px;
   text-align: center;
 }
-view.info view.info_row view.number {
+.info .info_row .number {
   color: #323232;
   font-size: 30rpx;
   font-family: PingFangSC-Semibold;
   font-weight: 800;
   line-height: 18px;
 }
-view.info view.info_row .title {
+.info .info_row .title {
   margin-top: 20rpx;
   font-family: PingFangSC;
   font-size: 20rpx;
   color: #9f9f9f;
 }
-view.info view.info_row view.vertical_line {
+.info .info_row .vertical_line {
   border-right: 1px solid #d9d9d9;
   height: 20px;
   margin-top: -35px;
 }
-view.orderRow {
+.orderRow {
   background-color: #f6f6f6;
-  border-radius: 25rpx;
-  box-shadow: 0px 2px 10px rgba(3, 3, 3, 0.1);
-  padding: 33rpx 0rpx;
+  margin-top: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 12px #ebedf0;
+  padding: 25rpx 0rpx;
+}
+.orderRow .top {
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
-view.orderRow view.left {
-  flex: 25%;
-  text-align: center;
+.orderRow .top .left {
+  text-align: left;
 }
-view.orderRow view.left image {
-  width: 122rpx;
-  height: 122rpx;
+.orderRow .top .left .storeInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  width: 100%;
+}
+.orderRow .top .left .storeInfo .thumb {
+  margin-left: -25rpx;
+}
+.orderRow .top .left .storeInfo .thumb image {
+  width: 145rpx;
+  height: 145rpx;
   border-radius: 50%;
 }
-view.orderRow view.middle {
-  color: #363938;
-  text-align: left;
-  flex: 51%;
+.orderRow .top .left .storeInfo .storeDetail {
+  margin-left: 20rpx;
 }
-view.orderRow view.middle view.serviceName {
-  padding-top: 6px;
-  font-family: PingFangSC-Semibold;
-  font-size: 33rpx;
-}
-view.orderRow view.middle .detail {
-  margin-top: 15rpx;
+.orderRow .top .left .storeInfo .storeDetail .h6 {
+  margin-top: 40rpx;
+  margin-left: -6rpx;
   color: #9f9f9f;
   font-family: PingFangSC-Regular;
   font-size: 22rpx;
 }
-view.orderRow view.middle .detail text.iconfont {
+.orderRow .top .left .storeInfo .storeDetail .h6 .iconfont {
   color: #369472;
   font-size: 13px;
 }
-view.orderRow view.middle view.line {
-  margin-top: 23rpx;
-  margin-bottom: 23rpx;
-  width: 90%;
-  height: 1rpx;
-  background-color: #e4e5e5;
-}
-view.orderRow view.right {
-  flex: 22%;
+.orderRow .top .right {
+  margin-top: -50rpx;
+  margin-right: -20rpx;
   text-align: center;
 }
-view.orderRow view.right view.price {
-  border-radius: 8px;
-  font-family: PingFangSC-Semibold;
-  font-size: 47rpx;
-}
-view.orderRow view.right view.status {
+.orderRow .top .right .status {
   margin-top: 20rpx;
 }
-view.orderRow view.right view.status text {
+.orderRow .top .right .status text {
   font-family: PingFangSC;
-  font-size: 24rpx;
+  font-size: 27rpx;
   color: #fafcfc;
-  padding: 5px 7px 5px 7px;
+  padding: 5px 7px;
   border-radius: 8px;
 }
-view.orderRow view.pending view.price {
+.orderRow .top .right.pending .h1 {
   color: #f9cf29;
 }
-view.orderRow view.pending view.status text {
+.orderRow .top .right.pending .status text {
   background-color: #f9cf29;
+}
+.orderRow .top .right.paid .h1 {
+  color: #369472;
+}
+.orderRow .top .right.paid .status text {
+  background-color: #369472;
+}
+.orderRow .top .right.rejected .h1 {
+  color: #FF5833;
+}
+.orderRow .top .right.rejected .status text {
+  background-color: #FF5833;
+}
+.orderRow .top .right.complete .h1 {
+  color: #9f9f9f;
+}
+.orderRow .top .right.complete .status text {
+  background-color: #9f9f9f;
+}
+.fullOrderRow {
+  background-color: white;
+  margin-top: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 12px #ebedf0;
+  padding: 25rpx 5rpx;
+}
+.fullOrderRow .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.fullOrderRow .top .left {
+  text-align: left;
+}
+.fullOrderRow .top .left .storeInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  width: 100%;
+}
+.fullOrderRow .top .left .storeInfo .thumb {
+  margin-left: -27rpx;
+}
+.fullOrderRow .top .left .storeInfo .thumb image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+.fullOrderRow .top .left .storeInfo .storeDetail {
+  margin-left: 20rpx;
+}
+.fullOrderRow .top .left .storeInfo .storeDetail .h6 {
+  margin-top: 40rpx;
+  margin-left: -6rpx;
+  color: #9f9f9f;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+}
+.fullOrderRow .top .left .storeInfo .storeDetail .h6 .iconfont {
+  color: #369472;
+  font-size: 13px;
+}
+.fullOrderRow .top .right {
+  margin-top: -50rpx;
+  margin-right: -20rpx;
+  text-align: center;
+}
+.fullOrderRow .top .right .status {
+  margin-top: 20rpx;
+}
+.fullOrderRow .top .right .status text {
+  font-family: PingFangSC;
+  font-size: 27rpx;
+  color: #fafcfc;
+  padding: 5px 7px;
+  border-radius: 8px;
+}
+.fullOrderRow .top .right.pending .h1 {
+  color: #f9cf29;
+}
+.fullOrderRow .top .right.pending .status text {
+  background-color: #f9cf29;
+}
+.fullOrderRow .top .right.paid .h1 {
+  color: #369472;
+}
+.fullOrderRow .top .right.paid .status text {
+  background-color: #369472;
+}
+.fullOrderRow .top .right.rejected .h1 {
+  color: #FF5833;
+}
+.fullOrderRow .top .right.rejected .status text {
+  background-color: #FF5833;
+}
+.fullOrderRow .top .right.complete .h1 {
+  color: #9f9f9f;
+}
+.fullOrderRow .top .right.complete .status text {
+  background-color: #9f9f9f;
+}
+.orderCard .thumb {
+  border-radius: 20rpx;
+  height: 98%;
+  width: 95%;
+}
+.orderCard .price {
+  color: #363938;
 }
 .van-tabbar-item__text {
   font-size: 21rpx;

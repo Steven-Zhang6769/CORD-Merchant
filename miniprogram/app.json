@@ -10,13 +10,20 @@
         "pages/request/index",
         "pages/calendar/index",
         "pages/messages/index",
-        "pages/profile/index"
+        "pages/profile/index",
+        "pages/messaging/room/room",
+        "pages/orderDetail/index",
+        "pages/updateMerchant/index",
+        "pages/updateService/index",
+        "pages/suggestion/index",
+        "pages/error/index",
+        "pages/developer/index"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#F6F6F6",
-        "navigationBarTitleText": "云开发 QuickStart",
+        "navigationBarTitleText": "聚CORD",
         "navigationBarTextStyle": "black"
     },
     "tabBar": {

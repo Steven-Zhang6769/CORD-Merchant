@@ -1,3 +1,29 @@
 page {
   background-color: #f6f6f6;
 }
+.body {
+  width: 95%;
+  margin: 0 auto;
+}
+.body .calendar {
+  --calendar-height: 800rpx;
+  --calendar-background-color: #fff;
+  color: #000;
+}
+.body .orderCell {
+  align-items: center;
+}
+.body .orderCell .userInfo image {
+  margin-right: 25rpx;
+  border-radius: 50%;
+  width: 110rpx;
+  height: 110rpx;
+}
+.body .orderCell .userInfo .username {
+  font-family: PingFangSC;
+  font-size: 30rpx;
+}
+.h4 {
+  margin-top: 100rpx;
+  text-align: center;
+}

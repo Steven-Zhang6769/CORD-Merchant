@@ -34,7 +34,8 @@ page {
 .body .welcome .title .h2 {
   color: white;
 }
-.body .welcome .title .h3 {
+.body .welcome .title .h4 {
+  color: white;
   margin-top: 23rpx;
 }
 .body .welcome image {

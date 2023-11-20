@@ -8,7 +8,7 @@
         <view class="info">
             <view class="info_row">
                 <view class="number">
-                    <text>{{ allOrders ? allOrders.length : 0 }}</text>
+                    <text>{{ orders ? orders.length : 0 }}</text>
                 </view>
                 <view class="title">全部</view>
                 <view class="vertical_line"></view>
@@ -29,23 +29,33 @@
         </view>
         <view class="swiper">
             <swiper wx:if="{{ !loading }}" autoplay circular indicator-dots indicator-active-color="#369472" interval="7000">
-                <swiper-item class="swiper-item" wx:for="{{ pendingOrders }}">
-                    <view class="orderRow" bindtap="orderNavigator" data-orderid="{{ item._id }}">
-                        <view class="left">
-                            <image src="{{ item.serviceData.picture }}" mode="aspectFill"></image>
-                        </view>
-                        <view class="middle">
-                            <view class="serviceName">{{ item.serviceData.serviceName }}</view>
-                            <view class="line"></view>
-                            <view class="detail">
-                                <van-icon name="clock-o" color="#359472" />
-                                {{ item.reservationDate }}
+                <swiper-item class="swiper-item" wx:for="{{ pendingOrders }}" bindtap="orderNavigator" data-orderid="{{ item._id }}">
+                    <view class="orderRow">
+                        <view class="top">
+                            <view class="left">
+                                <view class="storeInfo">
+                                    <view class="thumb">
+                                        <image src="{{ item.participantData.profilePic }}" mode="aspectFill"></image>
+                                    </view>
+                                    <view class="storeDetail">
+                                        <view class="h3">{{ item.participantData.username }}</view>
+                                        <view class="h6">
+                                            <van-icon name="clock-o" color="#359472" /> <text class="iconfont icon-map-thumbtack"></text>
+                                            {{ item.formattedReservationTime }}
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="right {{ item.status }}">
+                                <view class="h1" wx:if="{{ item.transactionData.category == 'screenshotUSD' }}"
+                                    >${{ item.transactionData.amount }}</view
+                                >
+                                <view class="status">
+                                    <text>{{ item.chineseStatus }}</text>
+                                </view>
                             </view>
                         </view>
-                        <view class="right pending">
-                            <view class="price">${{ item.transactionData.amount }}</view>
-                            <view class="status"><text>待审核</text></view>
-                        </view>
+                        <view class="line"></view>
                     </view>
                 </swiper-item>
             </swiper>
@@ -55,7 +65,7 @@
     <view class="welcome">
         <view class="title">
             <view class="h2">欢迎回来，{{ ownerData.username }}</view>
-            <view class="h3">查看现存订单 <van-icon name="arrow" /></view>
+            <view class="h4">查看现存订单 <van-icon name="arrow" /></view>
         </view>
         <view class="profilePic">
             <image src="{{ ownerData.profilePic }}"></image>
@@ -67,14 +77,14 @@
         <view class="info">
             <view class="info_row">
                 <view class="number">
-                    <text>{{ ratingCount }}</text>
+                    <text>{{ merchantData.numOrder }}</text>
                 </view>
-                <view class="title">总评价数</view>
+                <view class="title">总订单数</view>
                 <view class="vertical_line"></view>
             </view>
-            <view class="info_row" bindtap="openLocation">
+            <view class="info_row">
                 <view class="number">
-                    <text>{{ recentAvgRating }}</text>
+                    <text>{{ merchantData.avgRating || '暂无' }}</text>
                 </view>
                 <view class="title">最新评分</view>
                 <view class="vertical_line"></view>
@@ -82,7 +92,7 @@
             <view class="info_row">
                 <view class="number">
                     <van-icon name="star" color="#FFCD22" />
-                    <text style="margin-left: 5rpx">{{ avgRating }}</text>
+                    <text style="margin-left: 5rpx">{{  merchantData.avgRating || '暂无'}}</text>
                 </view>
                 <view class="title">历史平均</view>
             </view>

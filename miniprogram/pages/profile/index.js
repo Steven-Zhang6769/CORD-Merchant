@@ -6,7 +6,6 @@ Page({
     data: {
         merchantData: wx.getStorageSync("merchantData"),
         ownerData: wx.getStorageSync("ownerData"),
-        db: app.globalData.db,
         loading: true,
         active: 4,
         pagePath: ["/pages/index/index", "/pages/request/index", "/pages/calendar/index", "/pages/messages/index", "/pages/profile/index"],
@@ -19,5 +18,25 @@ Page({
                 url: this.data.pagePath[event.detail],
             });
         }
+    },
+    error(e) {
+        wx.navigateTo({
+            url: "/pages/error/index",
+        });
+    },
+    suggestion(e) {
+        wx.navigateTo({
+            url: "/pages/suggestion/index",
+        });
+    },
+    developer(e) {
+        wx.navigateTo({
+            url: "/pages/developer/index?",
+        });
+    },
+    updateMerchantNavigator(e) {
+        wx.navigateTo({
+            url: "/pages/updateMerchant/index",
+        });
     },
 });

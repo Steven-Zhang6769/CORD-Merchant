@@ -2,9 +2,9 @@
     <view class="h1" slot="left" fixed>私信</view>
 </van-nav-bar>
 <view class="body">
-    <van-empty image="search" description="暂无私信/联系人" wx:if="{{ !friendList || friendList.length == 0 }}" />
+    <van-empty image="search" description="暂无私信/联系人" wx:if="{{ !ownerData.friends || ownerData.friends.length == 0 }}" />
     <van-cell
-        wx:for="{{ friendList }}"
+        wx:for="{{ ownerData.friends }}"
         custom-class="friendCell"
         title-class="userInfo"
         bind:click="chat"

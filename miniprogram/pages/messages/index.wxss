@@ -1,3 +1,16 @@
 page {
   background-color: #f6f6f6;
 }
+.friendCell {
+  align-items: center;
+}
+.friendCell .userInfo image {
+  margin-right: 25rpx;
+  border-radius: 50%;
+  width: 110rpx;
+  height: 110rpx;
+}
+.friendCell .userInfo .username {
+  font-family: PingFangSC;
+  font-size: 30rpx;
+}

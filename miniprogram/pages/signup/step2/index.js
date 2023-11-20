@@ -23,13 +23,13 @@ Page({
     },
 
     handleFileList(event, operation, listName) {
-        const fileList = this.data[listName];
-        const { file } = event.detail;
+        const fileList = [...this.data[listName]];
+        const { file, index } = event.detail;
 
         if (operation === "add") {
             fileList.push({ file, url: file.url });
         } else if (operation === "delete") {
-            fileList.splice(event.detail.index, 1);
+            fileList.splice(index, 1);
         }
 
         this.setData({ [listName]: fileList });
@@ -51,45 +51,49 @@ Page({
         this.handleFileList(event, "delete", "detailFilelist");
     },
 
-    async uploadFiles(files) {
-        if (!files.length) return [];
-
-        const uploadTasks = files.map((file) => this.uploadSingleFile(`${this.data.openid}-pic-${Date.now()}.png`, file.url));
-        const results = await Promise.all(uploadTasks);
-
-        return results.map((item) => item.fileID);
-    },
-
     uploadSingleFile(filename, url) {
-        return wx.cloud.uploadFile({
+        return this.data.db.uploadFile({
             cloudPath: filename,
             filePath: url,
         });
     },
 
+    async uploadFiles(files) {
+        if (!files.length) return [];
+
+        const uploadTasks = files.map((file) => this.uploadSingleFile(`${this.data.openid}-pic-${Date.now()}.png`, file.url));
+        return await Promise.all(uploadTasks);
+    },
+
+    async getHttpPath(fileIds) {
+        const { fileList } = await this.data.db.getTempFileURL({ fileList: fileIds });
+        return fileList.map((file) => file.tempFileURL);
+    },
+
     async registerOwner() {
         const avatarPath = await this.uploadSingleFile(`${this.data.openid}_profilePic.jpg`, this.data.avatar);
-        const httpPath = await wx.cloud.getTempFileURL({
-            fileList: [avatarPath.fileID],
-        });
-        const avatarFileId = httpPath.fileList[0].tempFileURL;
+        const [avatarFileId] = await this.getHttpPath([avatarPath.fileID]);
         const { username, openid } = this.data;
+
         const res = await this.data.db
             .database()
             .collection("owner")
             .add({
                 data: {
                     profilePic: avatarFileId,
-                    username: username,
-                    openid: openid,
+                    username,
+                    openid,
+                    friends: [],
                 },
             });
+
         if (res.errMsg !== "collection.add:ok") throw new Error("owner registration failed");
         return res;
     },
 
     async submitForm() {
         wx.showLoading({ title: "提交中" });
+
         const {
             category,
             title,
@@ -105,6 +109,7 @@ Page({
         } = this.data;
 
         const requiredInfo = [title, subTitle, ownerName, ownerWechat, paymentInfo, locationDetail];
+
         if (requiredInfo.some((info) => !info)) {
             return this.showErrorMessage("请填完所有必填信息(*号)");
         }
@@ -113,27 +118,27 @@ Page({
             const registerOwnerRes = await this.registerOwner();
             const ownerid = registerOwnerRes._id;
             const combinedFiles = [...coverFilelist, ...detailFilelist];
-            const fileIds = await this.uploadFiles(combinedFiles);
-            const picRes = await wx.cloud.getTempFileURL({ fileList: fileIds });
-            console.log(picRes);
+            const fileResults = await this.uploadFiles(combinedFiles);
+            const fileIds = fileResults.map((item) => item.fileID);
+            const httpPaths = await this.getHttpPath(fileIds);
 
             const res = await this.data.db
                 .database()
                 .collection("merchant-application")
                 .add({
                     data: {
-                        title: title,
-                        subTitle: subTitle,
-                        coverPic: picRes.fileList[0].tempFileURL,
-                        subPic: picRes.fileList.slice(1).map((v) => v.tempFileURL),
+                        title,
+                        subTitle,
+                        coverPic: httpPaths[0],
+                        subPic: httpPaths.slice(1),
                         owner: ownerid,
-                        ownerName: ownerName,
-                        ownerWechat: ownerWechat,
-                        locationName: locationName,
-                        locationDetail: locationDetail,
-                        availableTimes: availableTimes,
-                        paymentInfo: paymentInfo,
-                        category: category,
+                        ownerName,
+                        ownerWechat,
+                        locationName,
+                        locationDetail,
+                        availableTimes,
+                        paymentInfo,
+                        category,
                         approved: false,
                     },
                 });

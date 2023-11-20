@@ -1,0 +1,31 @@
+view.all {
+  width: 93%;
+  margin: 0px auto;
+}
+view.all view.content {
+  background-color: #fafcfc;
+  margin-top: 10px;
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+  box-shadow: 0px 5px 12px #ebedf0;
+}
+view.all view.content textarea {
+  width: 100%;
+  color: #363938;
+  font-size: 14px;
+  height: 70vh;
+}
+button {
+  text-align: center;
+  background: #369472;
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #FAFCFC;
+  height: 5.5%;
+  width: 94%;
+  left: 3%;
+  position: fixed;
+  bottom: 25rpx;
+  padding-top: 8rpx;
+  border-radius: 15rpx;
+}

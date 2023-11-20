@@ -41,7 +41,7 @@
                         </view>
                     </view>
                 </view>
-                <view class="addService" bindtap="editInfo">修改信息</view>
+                <view class="addService" bindtap="updateMerchantNavigator">修改信息</view>
             </view>
         </view>
         <view class="services" wx:if="{{ serviceData && serviceData.length > 0 }}">

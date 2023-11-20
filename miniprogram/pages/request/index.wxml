@@ -10,35 +10,51 @@
     </van-tabs>
 
     <van-skeleton title avatar row="4" loading="{{ loading }}" custom-class="loading" />
-    <view class="foodRow" wx:for="{{ orders }}" bindtap="foodOrderNavigator" data-orderid="{{ item._id }}">
-        <view class="topInfo">
-            <view class="left">
-                <view class="storeInfo">
-                    <view class="thumb">
-                        <image src="{{ merchantData.coverPic }}" mode="aspectFill"></image>
+    <view class="main" wx:if="{{ !loading }}">
+        <van-empty
+            class="custom-image"
+            image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+            description="无此类订单"
+            wx:if="{{ !orders || orders.length == 0 }}" />
+        <view class="fullOrderRow" wx:for="{{ orders }}" bindtap="orderNavigator" data-orderid="{{ item._id }}">
+            <view class="top">
+                <view class="left">
+                    <view class="storeInfo">
+                        <view class="thumb">
+                            <image src="{{ item.participantData.profilePic }}" mode="aspectFill"></image>
+                        </view>
+                        <view class="storeDetail">
+                            <view class="h3">{{ item.participantData.username }}</view>
+                            <view class="h6">
+                                <van-icon name="clock-o" color="#359472" /> <text class="iconfont icon-map-thumbtack"></text>
+                                {{ item.formattedReservationTime }}
+                            </view>
+                        </view>
                     </view>
-                    <view class="storeDetail">
-                        <view class="merchantName">{{ merchantData.title }}</view>
+                </view>
+                <view class="right {{ item.status }}">
+                    <view class="h1" wx:if="{{ item.transactionData.category == 'screenshotUSD' }}">${{ item.transactionData.amount }}</view>
+                    <view class="status">
+                        <text>{{ item.chineseStatus }}</text>
                     </view>
                 </view>
             </view>
+            <view class="line"></view>
+            <van-card
+                custom-class="orderCard"
+                thumb-class="thumb"
+                title-class="h4"
+                desc-class="h7"
+                price-class="price"
+                thumb-mode="aspectFill"
+                wx:for="{{ item.order }}"
+                wx:if="{{ item.num && item.num != 0 }}"
+                num="{{ item.num }}"
+                price="{{ item.USDPrice }}"
+                desc="{{ item.serviceDescription }}"
+                title="{{ item.serviceName }}"
+                thumb="{{ item.picture }}" />
         </view>
-        <view class="line"></view>
-        <van-card
-            custom-class="card"
-            thumb-class="thumb"
-            title-class="cardTitle"
-            price-class="cardPrice"
-            desc-class="cardDescription"
-            num-class="cardNum"
-            thumb-mode="aspectFill"
-            wx:for="{{ item.foodOrder }}"
-            wx:if="{{ item.num && item.num != 0 }}"
-            num="{{ item.num }}"
-            price="{{ item.price }}"
-            desc="{{ item.itemDescription }}"
-            title="{{ item.itemName }}"
-            thumb="{{ item.picture }}" />
     </view>
 </view>
 <van-tabbar active="{{ active }}" bind:change="onTabChange" active-color="#359472" fixed="true">

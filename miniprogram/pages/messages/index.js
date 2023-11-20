@@ -1,12 +1,11 @@
 // pages/index/index.js
-import { formatNumber, formatTimeWithHours } from "../../util";
 
 const app = getApp();
 Page({
     data: {
         merchantData: app.globalData.merchantData,
-        ownerData: wx.getStorageSync("ownerData"),
-        friendList: wx.getStorageSync("ownerData").friendList,
+        ownerData: app.globalData.merchantData,
+        friendList: app.globalData.merchantData.friendList,
         openid: wx.getStorageSync("openid"),
         db: app.globalData.db,
         loading: true,
@@ -14,15 +13,25 @@ Page({
         pagePath: ["/pages/index/index", "/pages/request/index", "/pages/calendar/index", "/pages/messages/index", "/pages/profile/index"],
     },
 
-    onLoad(options) {},
+    async onLoad(options) {
+        const res = await app.globalData.ownerManager.refreshOwnerData(this.data.ownerData.openid, app);
+        this.setData({
+            ownerData: res,
+        });
+    },
     chat(e) {
-        console.log(e);
         let chatID = e.currentTarget.dataset.chatid;
         let name = e.currentTarget.dataset.name;
         let targetOpenID = e.currentTarget.dataset.openid;
         wx.navigateTo({
-            url: "/pages/example/chatroom_example/room/room?id=" + chatID + "&name=" + name + "&haoyou_openid=" + targetOpenID,
-        });
+            url: "/pages/messaging/room/room?id=" + chatID + "&name=" + name + "&haoyou_openid=" + targetOpenID,
+        })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     },
     onTabChange(event) {
         if (event.detail != this.data.active) {

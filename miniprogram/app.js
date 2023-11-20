@@ -1,3 +1,8 @@
+const MerchantManager = require("./utils/MerchantManager");
+const OrderManager = require("./utils/OrderManager");
+const OwnerManager = require("./utils/OwnerManager");
+
+import { fetchDataFromDB } from "./utils/dbUtils";
 // app.js
 App({
     globalData: {
@@ -17,11 +22,6 @@ App({
     initializeApp: async function () {
         if (!wx.cloud) {
             return console.error("请使用 2.2.3 或以上的基础库以使用云能力");
-        } else {
-            wx.cloud.init({
-                env: "merchants-6gv5wehc454a9c3a",
-                traceUser: true,
-            });
         }
         this.autoUpdate();
 
@@ -32,20 +32,29 @@ App({
             resourceEnv: "cord-4gtkoygbac76dbeb",
         });
         await c1.init();
-        this.globalData.db = c1;
+        this.globalData.cloud = c1;
+
+        const merchantManager = new MerchantManager(c1);
+        const orderManager = new OrderManager(c1);
+        const ownerManager = new OwnerManager(c1);
+
+        this.globalData.merchantManager = merchantManager;
+        this.globalData.orderManager = orderManager;
+        this.globalData.ownerManager = ownerManager;
 
         // Get or set openid
-        const openid = await this.checkAndGetOpenid();
+        const openid = await this.checkAndGetOpenid(c1);
         if (!openid) return; // Exit if there's no openid
 
         // Get owner info and subsequently merchant info
-        const ownerData = await this.checkAndGetOwnerData(openid, c1);
+        const ownerData = await ownerManager.refreshOwnerData(openid, this);
         if (!ownerData) {
             this.globalData.loginStatus = "notRegistered";
             return;
         }
 
-        const merchantData = await this.checkAndGetMerchantData(ownerData._id, c1);
+        console.log("ownerData", ownerData);
+        const merchantData = await merchantManager.refreshMerchantData(ownerData._id, this);
         if (!merchantData) {
             this.globalData.loginStatus = "underReview";
             wx.navigateTo({ url: "/pages/pendingReview/index" });
@@ -58,61 +67,22 @@ App({
         });
     },
 
-    async checkAndGetOpenid() {
-        const storedOpenid = wx.getStorageSync("openid");
-        if (storedOpenid) return storedOpenid;
-
-        try {
-            const res = await wx.cloud.callFunction({
-                name: "quickstartFunctions",
-                config: { env: "merchants-6gv5wehc454a9c3a" },
-                data: { type: "getOpenId" },
-            });
-            const openid = res.result.userInfo.openId;
-            wx.setStorageSync("openid", openid);
-            this.globalData.openid = openid;
-            return openid;
-        } catch (err) {
-            console.error("Failed to fetch openid:", err);
-            wx.showToast({ title: "用户信息获取失败" });
-        }
-    },
-
-    async checkAndGetOwnerData(openid, db) {
-        const storedOwnerData = wx.getStorageSync("ownerData");
-        if (storedOwnerData) {
-            this.globalData.ownerData = storedOwnerData;
-            return storedOwnerData;
-        }
-
-        try {
-            const res = await db.database().collection("owner").where({ openid: openid }).get();
-            const ownerData = res.data[0];
-            if (!ownerData) return null;
-
-            wx.setStorageSync("ownerData", ownerData);
-            this.globalData.ownerData = ownerData;
-            return ownerData;
-        } catch (err) {
-            console.error("Failed to fetch owner info:", err);
-        }
-    },
-
-    async checkAndGetMerchantData(ownerId, db) {
-        const storedMerchantData = wx.getStorageSync("merchantData");
-        if (storedMerchantData) {
-            this.globalData.merchantData = storedMerchantData;
-            return storedMerchantData;
-        }
-        try {
-            const res = await db.database().collection("merchant").where({ owner: ownerId }).get();
-            const merchantData = res.data[0];
-            if (!merchantData) return null;
-            wx.setStorageSync("merchantData", merchantData);
-            this.globalData.merchantData = merchantData;
-            return merchantData;
-        } catch (e) {
-            console.error(e);
+    async checkAndGetOpenid(db) {
+        let storedOpenid = wx.getStorageSync("openid");
+        if (storedOpenid) {
+            this.globalData.openid = storedOpenid;
+            return storedOpenid;
+        } else {
+            try {
+                const res = await db.callFunction({ name: "getOpenid" });
+                let openid = res.result.event.userInfo.openId;
+                wx.setStorageSync("openid", openid);
+                this.globalData.openid = openid;
+                return openid;
+            } catch (err) {
+                console.error("Failed to fetch openid:", err);
+                wx.showToast({ title: "用户信息获取失败" });
+            }
         }
     },
 

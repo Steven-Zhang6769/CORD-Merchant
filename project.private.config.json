@@ -6,6 +6,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "",
+          "pathName": "pages/orderDetail/index",
+          "query": "orderid=def1da45653f354708c25f9a0eddf172",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/orderDetail/index",
+          "query": "orderid=fd1ab1d56547ccbb01c84ee0571a16f4",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/request/index",
           "pathName": "pages/request/index",
           "query": "",
@@ -43,5 +57,5 @@
   },
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "projectname": "cord_merchants",
-  "libVersion": "3.1.0"
+  "libVersion": "3.1.3"
 }

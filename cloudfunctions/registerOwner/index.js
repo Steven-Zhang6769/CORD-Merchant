@@ -24,6 +24,7 @@ exports.main = async (event, context) => {
                     profilePic: avatarFileID,
                     username: username,
                     openid: openid,
+                    friends: [],
                 },
             })
             .then((res) => {
