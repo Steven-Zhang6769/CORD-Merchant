@@ -1,0 +1,98 @@
+<view class="background-image">
+  <image src="{{merchantData.coverPic}}" mode="aspectFill"></image>
+</view>
+<view class="header">
+    <view class="backButton" bindtap="navigateBack">
+        <van-icon name="arrow-left" size="20px" color="white" />
+    </view>
+</view>
+<van-skeleton title avatar row="7" loading="{{ loading }}" />
+<view class="body" wx:if="{{ !loading }}">
+    <view class="merchantInfo">
+        <view class="merchantDetail">
+            <view class="left">
+                <image src="{{ merchantData.ownerData.profilePic }}" mode="aspectFill"></image>
+            </view>
+            <view class="right">
+                <view class="h1">{{ merchantData.title }}</view>
+                <view class="h4">{{ merchantData.subTitle }}</view>
+            </view>
+        </view>
+        <view class="info_row">
+            <view class="info_column">
+                <view class="title">评分</view>
+                <van-icon name="friends-o" size="30px" color="#369472" custom-class="icon" />
+                <view class="desc">
+                    <van-icon name="star" color="#FFCD22" />
+                    <text wx:if="{{ avgRating != 0 }}" style="margin-left: 5rpx">{{ avgRating }}</text>
+                    <text wx:if="{{ avgRating == 0 }}">暂无</text>
+                </view>
+                <view class="vertical_line"></view>
+            </view>
+            <view class="info_column" bindtap="openLocation">
+                <view class="title">地址</view>
+                <van-icon name="location-o" size="30px" color="#369472" custom-class="icon" />
+                <view class="desc">
+                    <text>{{ merchantData.locationName }}</text>
+                </view>
+                <view class="vertical_line"></view>
+            </view>
+            <view class="info_column">
+                <view class="title">档期</view>
+                <van-icon name="clock-o" size="30px" color="#369472" custom-class="icon" />
+                <view class="desc">
+                    <text>{{ merchantData.availableTimes }}</text>
+                </view>
+            </view>
+        </view>
+        <view class="showDetail" bindtap="showMerchantDetail">
+            <van-icon name="arrow-down" style="margin-top: 25rpx"></van-icon>
+        </view>
+    </view>
+    <view class="mainBody {{ showCart ? 'ifCart' : '' }}" wx:if="{{ !loading }}">
+        <view class="serviceRow" wx:for="{{ serviceData }}">
+            <image src="{{ item.picture }}" mode="aspectFill" bindtap="showServiceDetail" data-data="{{ item }}"></image>
+            <view class="middle" bindtap="showServiceDetail" data-data="{{ item }}">
+                <view class="serviceTitle h3">{{ item.serviceName }}</view>
+                <view class="h7">
+                    {{ item.serviceSubtitle }}
+                </view>
+            </view>
+            <view class="bottom">
+                <view class="price h3">${{ item.USDPrice }}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<van-action-sheet show="{{ showMerchantDetail }}" title="店铺详情" bind:close="closeMerchantDetail" style="background-color: #f7f8fa">
+    <view class="merchantDetail">
+        <view class="pics">
+            <swiper interval="6000" autoplay circular indicator-dots indicator-active-color="#369472">
+                <swiper-item wx:for="{{ merchantData.subPic }}" wx:key="_id">
+                    <view class="wrapper">
+                        <image mode="aspectFit" src="{{ item }}" bindtap="enlarge" data-url="{{ item }}"></image>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="underlineCard">
+            <text class="content">{{ merchantData.billboard }}</text>
+        </view>
+    </view>
+</van-action-sheet>
+<van-action-sheet show="{{ showServiceDetail }}" title="服务详情" bind:close="closeServiceDetail" style="background-color: #f7f8fa">
+    <view class="serviceDetail">
+        <image src="{{ selectedServiceData.picture }}" mode="aspectFill"></image>
+        <view class="titles">
+            <view class="left">
+                <view class="h1">{{ selectedServiceData.serviceName }}</view>
+                <view class="h7">{{ selectedServiceData.serviceSubtitle }}</view>
+            </view>
+            <view class="price"> <text>$</text>{{ selectedServiceData.USDPrice }} </view>
+        </view>
+        <view class="underlineCard">
+            <text class="content">{{ selectedServiceData.serviceDescription }}</text>
+        </view>
+    </view>
+</van-action-sheet>
+

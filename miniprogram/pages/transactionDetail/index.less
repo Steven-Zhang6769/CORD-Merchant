@@ -1,0 +1,113 @@
+.header {
+    background-color: #369472;
+
+    .wrapper {
+        z-index: 0;
+        padding: 45rpx 25rpx 85rpx 30rpx;
+        display: flex;
+        align-items: center;
+    }
+
+    .left {
+        flex: 50%;
+
+        .userRow {
+            display: flex;
+            align-items: center;
+
+            .profile {
+                flex: 35%;
+                text-align: center;
+
+                image {
+                    width: 85rpx;
+                    height: 85rpx;
+                    border-radius: 50%;
+                }
+            }
+
+            .userInfo {
+                flex: 65%;
+                text-align: left;
+
+                .h2 {
+                    font-family: PingFangSC;
+                    font-size: 22rpx;
+                    color: #CDCDCD;
+                    margin-top: -5rpx;
+                }
+
+                .h1 {
+                    margin-top: 10rpx;
+                    font-family: PingFangSC-Semibold;
+                    font-size: 36rpx;
+                    color: #fafcfc;
+                }
+            }
+        }
+
+        .line {
+            margin-top: 35rpx;
+            margin-bottom: 35rpx;
+            width: 95%;
+            height: 3rpx;
+            background-color: #E4E5E5;
+        }
+    }
+
+    .right {
+        flex: 50%;
+        text-align: right;
+        padding-right: 15rpx;
+
+        text {
+            font-family: PingFangSC-Semibold;
+            font-size: 65rpx;
+            color: #FFFFFF;
+        }
+    }
+}
+
+.main {
+    position: relative;
+    background-color: #F7F8FA;
+    border-radius: 23px;
+    z-index: 1500;
+    margin-top: -23px;
+    padding-bottom: 100rpx;
+
+
+    .infoCell {
+        padding-top: 30rpx;
+        padding-bottom: 30rpx;
+    }
+
+    .imageCell {
+        display: block;
+
+        image {
+            margin-top: 20rpx;
+            border-radius: 8px;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .cellGroup {
+        box-shadow: 0px 5px 12px #ebedf0;
+    }
+
+    button.reupload {
+        width: 40%;
+        margin: 0px auto;
+        margin-top: 15rpx;
+        margin-bottom: 15rpx;
+        background: rgba(54, 148, 114, 0.8);
+        border-radius: 20rpx;
+        font-family: PingFangSC;
+        font-size: 25rpx;
+        color: #fafcfc;
+        padding: 5rpx 0rpx 5rpx 0rpx;
+        box-shadow: 0px 5px 12px #ebedf0;
+    }
+}

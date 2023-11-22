@@ -14,6 +14,13 @@ Page({
     onLoad(options) {
         this.loadOrders();
     },
+    onPullDownRefresh: async function () {
+        const merchantData = await app.globalData.merchantManager.getMerchantData(this.data.ownerData._id, app, true);
+        this.setData({
+            merchantData,
+        });
+        this.onLoad();
+    },
 
     async loadOrders() {
         this.showLoading();

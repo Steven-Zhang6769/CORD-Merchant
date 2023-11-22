@@ -1,0 +1,226 @@
+page {
+  background-color: #f7f8fa;
+}
+.background-image {
+  width: 100%;
+  height: 400rpx;
+  position: absolute;
+  z-index: -1000;
+}
+.background-image image {
+  width: 100%;
+  height: 400rpx;
+}
+.header {
+  text-align: center;
+  padding-top: 120rpx;
+}
+.header .backButton {
+  position: fixed;
+  left: 30rpx;
+  top: 97rpx;
+  z-index: 2000;
+  background-color: rgba(54, 57, 56, 0.6);
+  padding: 13rpx 20rpx;
+  border-radius: 16rpx;
+}
+.body {
+  margin-top: 310rpx;
+}
+.body .merchantInfo {
+  width: 95%;
+  margin: 0px auto;
+  margin-top: 30rpx;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  text-align: center;
+  border-radius: 16rpx;
+  padding: 35rpx 0rpx;
+}
+.body .merchantInfo .merchantDetail {
+  width: 97%;
+  margin: 0px auto;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: top;
+  justify-content: space-between;
+}
+.body .merchantInfo .merchantDetail .left {
+  margin-left: 25rpx;
+}
+.body .merchantInfo .merchantDetail .left image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 25rpx;
+  box-shadow: 0px 3px 5px #ebedf0;
+}
+.body .merchantInfo .merchantDetail .right {
+  text-align: right;
+  margin-right: 25rpx;
+}
+.body .merchantInfo .merchantDetail .right .h4 {
+  margin-top: 15rpx;
+  font-weight: 400;
+  color: #9f9f9f;
+}
+.body .merchantInfo .merchantDetail .right button {
+  display: inline-block;
+  width: 70%;
+  margin-top: 30rpx;
+  background: rgba(54, 148, 114, 0.8);
+  border-radius: 20rpx;
+  font-family: PingFangSC;
+  font-size: 25rpx;
+  color: #fafcfc;
+  padding: 5rpx 0rpx 5rpx 0rpx;
+}
+.body .merchantInfo .info_row {
+  display: flex;
+  width: 100%;
+  padding: 40rpx 0rpx;
+  margin-left: -18rpx;
+  line-height: 0.8em;
+}
+.body .merchantInfo .info_row .info_column {
+  flex: 33%;
+  max-width: 33%;
+  margin-right: 4rpx;
+  text-align: center;
+}
+.body .merchantInfo .info_row .info_column .title {
+  font-family: PingFangSC;
+  font-size: 20rpx;
+  color: #9f9f9f;
+}
+.body .merchantInfo .info_row .info_column .icon {
+  margin-top: 20rpx;
+}
+.body .merchantInfo .info_row .info_column .desc {
+  margin-top: 21rpx;
+  font-family: PingFangSC;
+  font-weight: 450;
+  font-size: 21rpx;
+  color: #656565;
+}
+.body .merchantInfo .info_row .info_column .vertical_line {
+  border-right: 1px solid #d9d9d9;
+  height: 20px;
+  margin-top: -40px;
+}
+.body .mainBody {
+  width: 95%;
+  margin: 0px auto;
+  margin-top: 30rpx;
+  padding-bottom: 70rpx;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30rpx;
+}
+.body .mainBody .serviceRow {
+  border-radius: 15rpx;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+.body .mainBody .serviceRow image {
+  width: 100%;
+  height: 250rpx;
+  margin: 0px auto;
+  border-radius: 30rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+}
+.body .mainBody .serviceRow .middle .serviceTitle {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+}
+.body .mainBody .serviceRow .bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25rpx;
+}
+.body .ifCart {
+  padding-bottom: 180rpx;
+}
+.serviceDetail {
+  width: 87%;
+  margin: 0px auto;
+}
+.serviceDetail image {
+  width: 100%;
+  height: 440rpx;
+  border-radius: 20rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+  margin-top: 15rpx;
+}
+.serviceDetail .titles {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.serviceDetail .titles .left .h7 {
+  margin-top: 15rpx;
+  font-size: 26rpx;
+}
+.serviceDetail .titles .price {
+  font-family: PingFangSC-Semibold;
+  font-size: 70rpx;
+  color: #369472;
+}
+.serviceDetail .titles .price text {
+  margin-right: 5rpx;
+}
+.merchantDetail {
+  width: 87%;
+  margin: 0px auto;
+  margin-top: 15rpx;
+}
+.merchantDetail .pics swiper {
+  background-color: white;
+  text-align: center;
+  height: 530rpx;
+}
+.merchantDetail .pics swiper-item .wrapper {
+  width: 95%;
+  height: 460rpx;
+  margin: 0px auto;
+  border-radius: 20rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+}
+.merchantDetail .pics swiper-item .wrapper image {
+  height: 440rpx;
+  width: 100%;
+}
+.cart {
+  width: 96%;
+  margin: 0px auto;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  padding-top: 15rpx;
+  font-family: PingFangSC-Regular;
+  z-index: 50;
+}
+.cartDetail .orderCard {
+  background-color: #ffffff;
+}
+.cartDetail .total {
+  width: 93%;
+  margin: 0px auto;
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.cartDetail .total .right {
+  font-family: PingFangSC-Semibold;
+  font-size: 50rpx;
+  color: #369472;
+}
+.underlineCard .content {
+  font-family: PingFangSC;
+  font-size: 14px;
+  color: #656565;
+  line-height: 2.5em;
+}

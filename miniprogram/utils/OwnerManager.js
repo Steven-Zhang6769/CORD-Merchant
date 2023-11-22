@@ -6,13 +6,24 @@ class OwnerManager {
         this.$ = cloud.database().command.aggregate;
     }
 
-    async refreshOwnerData(id, app) {
-        let ownerData = await fetchDataFromDB("owners", { openid: id }, null, this.cloud);
-        ownerData = ownerData[0];
-        if (!ownerData) return null;
+    async getOwnerData(id, app, refresh = false) {
+        let ownerData = refresh ? null : wx.getStorageSync("ownerData");
 
-        wx.setStorageSync("ownerData", ownerData);
-        app.globalData.ownerData = ownerData;
+        if (!ownerData) {
+            try {
+                const fetchedData = await fetchDataFromDB("owners", { openid: id }, null, this.cloud);
+                ownerData = fetchedData[0];
+            } catch (error) {
+                console.error("Error fetching owner data:", error);
+                return null;
+            }
+        }
+
+        if (ownerData) {
+            wx.setStorageSync("ownerData", ownerData);
+            app.globalData.ownerData = ownerData;
+        }
+
         return ownerData;
     }
 }

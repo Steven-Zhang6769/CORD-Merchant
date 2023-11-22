@@ -1,4 +1,3 @@
-const app = getApp();
 class MerchantManager {
     constructor(cloud) {
         this.cloud = cloud;
@@ -6,12 +5,18 @@ class MerchantManager {
         this.$ = cloud.database().command.aggregate;
     }
 
-    async refreshMerchantData(ownerId, app) {
-        const merchantData = await this.fetchMerchantData({ owner: ownerId });
-        if (!merchantData) return null;
+    async getMerchantData(ownerId, app, refresh = false) {
+        let merchantData = refresh ? null : wx.getStorageSync("merchantData");
 
-        wx.setStorageSync("merchantData", merchantData);
-        app.globalData.merchantData = merchantData;
+        if (!merchantData) {
+            merchantData = await this.fetchMerchantData({ owner: ownerId });
+        }
+
+        if (merchantData) {
+            app.globalData.merchantData = merchantData;
+            wx.setStorageSync("merchantData", merchantData);
+        }
+
         return merchantData;
     }
 
@@ -35,6 +40,7 @@ class MerchantManager {
             return res.result.list[0];
         } catch (error) {
             console.error("Error fetching merchant data:", error);
+            return null;
         }
     }
 
@@ -55,32 +61,6 @@ class MerchantManager {
                 title: "获取档期失败",
                 icon: "error",
             });
-        }
-    }
-
-    async getCurrentAppointments(merchantID) {
-        try {
-            const futureAppointments = await this.cloud
-                .collection("orders")
-                .where({
-                    merchant: merchantID,
-                    date: this.cloud.command.gt(new Date()),
-                })
-                .get();
-
-            const appointments = futureAppointments.data;
-
-            const appointmentTimes = appointments.flatMap((appointment) => {
-                const startDate = new Date(appointment.date);
-                const endDate = new Date(startDate);
-                endDate.setMinutes(startDate.getMinutes() + 30);
-                return [startDate, endDate];
-            });
-
-            return appointmentTimes;
-        } catch (error) {
-            console.error("Error fetching current appointments:", error);
-            throw error;
         }
     }
 }

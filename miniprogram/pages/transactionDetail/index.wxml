@@ -1,0 +1,43 @@
+<view class="header">
+    <view class="wrapper">
+        <view class="left">
+            <view class="sender userRow">
+                <view class="profile">
+                    <image src="{{senderData.profilePic}}"></image>
+                </view>
+                <view class="userInfo">
+                    <view class="h2">付款人</view>
+                    <view class="h1">{{senderData.username}}</view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="receiver userRow">
+                <view class="profile">
+                    <image src="{{receiverData.profilePic}}"></image>
+                </view>
+                <view class="userInfo">
+                    <view class="h2">收款人</view>
+                    <view class="h1">{{receiverData.username}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="right">
+            <text wx:if="{{transactionData.category == 'screenshotUSD'}}">${{transactionData.amount}}</text>
+            <text wx:if="{{transactionData.category == 'wechatCNY'}}">¥{{transactionData.amount}}</text>
+        </view>
+    </view>
+</view>
+<view class="main">
+   <van-cell-group inset border="{{false}}" title="付款信息" custom-class="cellGroup">
+        <van-cell title="付款ID" label="{{transactionData._id}}" custom-class = "infoCell"/>
+        <van-cell title="付款金额:" value="${{transactionData.amount}}" wx:if="{{transactionData.category == 'screenshotUSD'}}" custom-class = "infoCell"/>
+        <van-cell title="付款金额:" value="¥{{transactionData.amount}}" wx:if="{{transactionData.category == 'wechatCNY'}}" custom-class = "infoCell"/>
+        <van-cell title="付款方式" value="美元转账" custom-class = "infoCell" wx:if="{{transactionData.category == 'screenshotUSD'}}"/>
+        <van-cell title="付款方式" value="微信付款" custom-class = "infoCell" wx:if="{{transactionData.category == 'wechatCNY'}}"/>
+        <van-cell title="付款时间" value="{{transactionData.createTime}}" custom-class = "infoCell"/>
+        <van-cell title="付款截图:" custom-class = "imageCell" wx:if="{{transactionData.category == 'screenshotUSD'}}">
+            <image src="{{transactionData.screenshot}}" mode="widthFix" bindtap="enlarge" data-url = "{{transactionData.screenshot}}"></image>
+            <button class="reupload" bindtap="reUpload">重新上传截图信息</button>
+        </van-cell>
+    </van-cell-group> 
+</view>

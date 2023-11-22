@@ -12,6 +12,15 @@ page {
   margin-top: 65rpx;
   margin-bottom: 45rpx;
 }
+.body .empty {
+  margin-top: 70rpx;
+  height: 200rpx;
+  text-align: center;
+}
+.body .empty image {
+  width: 100rpx;
+  height: 110rpx;
+}
 .body .swiper {
   margin: 0px, auto;
   margin-top: 65rpx;

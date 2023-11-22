@@ -2,7 +2,7 @@
     <van-cell-group inset title="基本信息" custom-class="cellGroup">
         <van-field
             custom-class="text-field"
-            value="{{ serviceData.serviceName }}"
+            value="{{ serviceName }}"
             placeholder="请输入服务名"
             border="{{ true }}"
             label="服务名"
@@ -12,7 +12,7 @@
 
         <van-field
             custom-class="text-field"
-            value="{{ serviceData.serviceSubtitle }}"
+            value="{{ serviceSubtitle }}"
             placeholder="副标题"
             type="textarea"
             border="{{ true }}"
@@ -25,7 +25,7 @@
     <van-cell-group inset title="" custom-class="cellGroup">
         <van-field
             custom-class="text-field"
-            value="{{ serviceData.serviceDescription }}"
+            value="{{ serviceDescription }}"
             placeholder="请输入服务细节描述"
             border="{{ true }}"
             label="服务细节（可多行）"
@@ -37,7 +37,7 @@
     <van-cell-group inset title="价格信息" custom-class="cellGroup">
         <van-field
             custom-class="text-field"
-            value="{{ serviceData.USDPrice }}"
+            value="{{ USDPrice }}"
             placeholder="请写出服务的美元价格"
             type="number"
             border="{{ true }}"
@@ -51,7 +51,7 @@
         <view class="uploader">
             <van-uploader
                 upload-text="服务展示图"
-                file-list="{{ fileList }}"
+                file-list="{{ picture }}"
                 bind:after-read="addPic"
                 bind:delete="deletePic"
                 deletable="{{ true }}"
@@ -67,5 +67,5 @@
     </van-cell-group>
 </view>
 <view class="footer">
-    <van-button type="primary" size="large" bindtap="submit" custom-class="next">更新服务</van-button>
+    <van-button type="primary" size="large" bindtap="submit" custom-class="next">添加服务</van-button>
 </view>

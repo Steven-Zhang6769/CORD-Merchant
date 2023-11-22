@@ -79,6 +79,7 @@
                 border="{{ true }}"
                 label="详细工作时间"
                 bind:change="onChange"
+                required
                 data-field="availableTimes" />
         </van-cell-group>
         <van-cell-group inset title="价格信息" custom-class="cellGroup">
@@ -112,7 +113,7 @@
             </view>
         </van-cell-group>
         <van-cell-group inset title="店铺展示图(可多张)">
-            <view class="uploader">
+            <view class="uploader detail">
                 <van-uploader
                     file-list="{{ detailFilelist }}"
                     bind:after-read="addDetail"

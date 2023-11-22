@@ -1,36 +1,36 @@
 page {
   background-color: #f6f6f6;
 }
-.body view.header {
+.body .header {
   text-align: center;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
-.body view.header view.wrapper {
+.body .header .wrapper {
   padding: 0rpx 0rpx 15rpx 0rpx;
   backdrop-filter: blur(10px);
   height: 50%;
   background: rgba(9, 9, 9, 0.5);
 }
-.body view.header view.wrapper image {
+.body .header .wrapper image {
   width: 220rpx;
   height: 220rpx;
   border-radius: 50%;
 }
-.body view.header view.wrapper view.text {
+.body .header .wrapper .text {
   margin-top: 10px;
   font-size: 45rpx;
   font-family: PingFangSC-Semibold;
   color: #fafcfc;
 }
-.body view.header view.wrapper view.buttons {
+.body .header .wrapper .buttons {
   margin: 0px auto;
   width: 76%;
   display: flex;
   justify-content: space-between;
 }
-.body view.header view.wrapper view.buttons button {
+.body .header .wrapper .buttons button {
   padding: 0rpx 35rpx 0rpx 35rpx;
   display: inline-block;
   background: #fafcfc;
@@ -42,7 +42,7 @@ page {
   margin-top: 33rpx;
   margin-bottom: 40px;
 }
-.body view.merchantBody {
+.body .merchantBody {
   position: relative;
   z-index: 10;
   background-color: #f6f6f6;
@@ -51,152 +51,102 @@ page {
   padding-bottom: 1px;
   padding-top: 30rpx;
 }
-.body view.merchantBody .storeInfo {
+.body .merchantBody .storeInfo {
   margin-top: 60rpx;
 }
-.body view.merchantBody .storeInfo .wrapper {
+.body .merchantBody .storeInfo .wrapper {
   display: flex;
 }
-.body view.merchantBody .storeInfo .wrapper view.info_row {
+.body .merchantBody .storeInfo .wrapper .info_row {
   flex: 33%;
   max-width: 33%;
   margin-right: 4px;
   text-align: center;
 }
-.body view.merchantBody .storeInfo .wrapper view.info_row .title {
+.body .merchantBody .storeInfo .wrapper .info_row .title {
   font-family: PingFangSC;
   font-size: 20rpx;
   color: #9f9f9f;
 }
-.body view.merchantBody .storeInfo .wrapper view.info_row .icon {
+.body .merchantBody .storeInfo .wrapper .info_row .icon {
   margin-top: 20rpx;
 }
-.body view.merchantBody .storeInfo .wrapper view.info_row view.desc {
+.body .merchantBody .storeInfo .wrapper .info_row .desc {
   margin-top: 21rpx;
   font-family: PingFangSC;
   font-weight: 450;
   font-size: 21rpx;
   color: #656565;
 }
-.body view.merchantBody .storeInfo .wrapper view.info_row view.vertical_line {
+.body .merchantBody .storeInfo .wrapper .info_row .vertical_line {
   border-right: 1px solid #d9d9d9;
   height: 20px;
   margin-top: -40px;
 }
-.body view.merchantBody .storeInfo view.addService {
-  width: 30%;
-  margin: 0px auto;
-  margin-top: 50rpx;
-  text-align: center;
-  background: rgba(54, 148, 114, 0.8);
-  border-radius: 20rpx;
-  font-family: PingFangSC;
-  font-size: 25rpx;
-  color: #fafcfc;
-  padding: 20rpx 0rpx 20rpx 0rpx;
+.body .merchantBody .service .swipe-cell {
+  padding: 20rpx 0rpx;
 }
-.body view.merchantBody .services {
-  width: 93%;
-  margin: 0px auto;
-  margin-top: 35rpx;
+.body .merchantBody .service .serviceCard {
+  margin-left: -10rpx;
+  background-color: #fff;
+  text-align: right;
 }
-.body view.merchantBody .services view.serviceRow {
-  margin-bottom: 20px;
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0px 5px 12px #ebedf0;
+.body .merchantBody .service .serviceCard .thumb {
+  width: 100%;
+  height: 180rpx;
+  border-radius: 10px;
+}
+.body .merchantBody .service .serviceCard .price {
+  font-size: 30rpx;
+  font-family: PingFangSC-Semibold;
+  font-weight: 800;
+  color: #323232;
+}
+.body .merchantBody .van-swipe-cell__left {
+  background-color: #369472;
   display: flex;
   align-items: center;
-  padding: 15px 0px 15px 0px;
+  width: 130rpx;
 }
-.body view.merchantBody .services view.serviceRow view.left {
-  flex: 27%;
-  max-width: 27%;
-  text-align: center;
-}
-.body view.merchantBody .services view.serviceRow view.left image {
-  width: 140rpx;
-  height: 140rpx;
-  border-radius: 30rpx;
-}
-.body view.merchantBody .services view.serviceRow view.middle {
-  color: #000000;
-  text-align: left;
-  flex: 55%;
-  max-width: 55%;
-}
-.body view.merchantBody .services view.serviceRow view.middle view.serviceTitle {
-  padding-top: 5px;
-  font-family: PingFangSC-Medium;
-  font-size: 33rpx;
-}
-.body view.merchantBody .services view.serviceRow view.middle view.line {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 90%;
-  height: 1rpx;
-  background-color: #e4e5e5;
-}
-.body view.merchantBody .services view.serviceRow view.middle view.serviceDescription {
-  color: #9f9f9f;
-  font-family: PingFangSC-Regular;
-  font-size: 10px;
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  white-space: normal !important;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-}
-.body view.merchantBody .services view.serviceRow view.middle view.serviceDescription text {
-  color: #369472;
-  font-size: 13px;
-}
-.body view.merchantBody .services view.serviceRow view.right {
-  flex: 14%;
-  max-width: 14%;
-}
-.body view.merchantBody .services view.serviceRow view.right view.price {
+.body .merchantBody .van-swipe-cell__left .h4 {
   text-align: center;
   width: 100%;
-  background: rgba(54, 148, 114, 0.8);
-  border-radius: 8px;
-  font-family: PingFangSC;
-  font-size: 24rpx;
-  color: #fafcfc;
-  padding: 5px 0px 5px 0px;
+  font-weight: 400;
+  color: white;
+  padding: 0rpx 5rpx;
 }
-.body view.merchantBody .services view.addService {
-  width: 30%;
-  margin: 0px auto;
+.body .merchantBody .van-swipe-cell__right {
+  background-color: #bd4848;
+  display: flex;
+  align-items: center;
+  width: 130rpx;
+}
+.body .merchantBody .van-swipe-cell__right .h4 {
   text-align: center;
-  background: rgba(54, 148, 114, 0.8);
-  border-radius: 20rpx;
-  font-family: PingFangSC;
-  font-size: 25rpx;
-  color: #fafcfc;
-  padding: 16rpx 0rpx 16rpx 0rpx;
+  width: 100%;
+  font-weight: 400;
+  color: white;
+  padding: 0rpx 5rpx;
 }
-.body view.merchantBody .setting {
+.body .merchantBody .setting {
   margin: 0px auto;
   margin-top: 35rpx;
   margin-bottom: 200rpx;
 }
-.body view.merchantBody .setting .cellGroup {
+.body .merchantBody .setting .cellGroup {
   margin-top: 40rpx;
   padding: 5px 15px 5px 15px;
 }
-.body view.merchantBody .setting .cellGroup .cell {
+.body .merchantBody .setting .cellGroup .cell {
   padding: 10px 0px;
 }
-.body view.merchantBody .setting button {
+.body .merchantBody .setting button {
   background-color: #fff;
   padding: 0;
   margin: 0;
   font-size: inherit;
   text-align: left;
 }
-.body view.merchantBody .setting button::after {
+.body .merchantBody .setting button::after {
   border: #fff solid;
 }

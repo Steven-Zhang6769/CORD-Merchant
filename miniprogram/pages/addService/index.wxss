@@ -34,7 +34,7 @@
   padding-bottom: 24rpx;
 }
 .body .uploader {
-  min-height: 230rpx;
+  height: 230rpx;
   background-color: white;
   border-radius: 20rpx;
   padding: 15rpx 10rpx;
@@ -67,13 +67,10 @@
   font-size: 20rpx;
   font-family: "PingFangSC-Semibold";
 }
-.body .uploader .detail {
-  margin-bottom: 50rpx;
-}
 .footer {
+  position: fixed;
+  bottom: 90rpx;
   width: 100%;
-  margin-top: 20rpx;
-  padding-bottom: 60rpx;
 }
 .footer .next {
   width: 80%;

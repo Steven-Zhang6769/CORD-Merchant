@@ -3,33 +3,53 @@ const cloud = app.globalData.cloud;
 Page({
     data: {
         merchantData: app.globalData.merchantData,
+        ownerData: app.globalData.ownerData,
+        addedCover: [],
+        addedSubPic: [],
+        deletedFiles: [],
     },
 
-    onLoad(options) {
-        const merchantData = app.globalData.merchantManager.getMerchantData(app.globalData.merchantData._id);
-
+    async onLoad(options) {
+        const merchantData = await app.globalData.merchantManager.getMerchantData(this.data.ownerData._id, app, true);
+        let coverFilelist = [{ url: merchantData.coverPic, filePath: merchantData.coverPicID }];
+        let subPicFileList = merchantData.subPic.map((image) => ({ url: image }));
+        for (let i = 0; i < subPicFileList.length; i++) {
+            subPicFileList[i].filePath = merchantData.subPicIDs[i];
+        }
         this.setData({
+            coverFilelist,
+            subPicFileList,
             merchantData,
         });
     },
+    onChange(e) {
+        const {
+            detail,
+            currentTarget: {
+                dataset: { field },
+            },
+        } = e;
 
-    onChange(e) {},
+        const merchantDataKey = `merchantData.${field}`;
+        this.setData({
+            [merchantDataKey]: detail,
+        });
+    },
 
-    handleFileList(event, operation, listName) {
-        const fileList = [...this.data[listName]];
-        const { file, index } = event.detail;
+    onClickCategory(e) {
+        const {
+            currentTarget: {
+                dataset: { name },
+            },
+        } = e;
 
-        if (operation === "add") {
-            fileList.push({ file, url: file.url });
-        } else if (operation === "delete") {
-            fileList.splice(index, 1);
-        }
-
-        this.setData({ [listName]: fileList });
+        this.setData({
+            "merchantData.category": name,
+        });
     },
 
     addCover(event) {
-        this.handleFileList(event, "add", "coverFilelist");
+        this.handleFileList(event, "add", "coverFilelist", "addedCover");
     },
 
     deleteCover(event) {
@@ -37,84 +57,113 @@ Page({
     },
 
     addDetail(event) {
-        this.handleFileList(event, "add", "detailFilelist");
+        this.handleFileList(event, "add", "subPicFileList", "addedSubPic");
     },
 
     deleteDetail(event) {
-        this.handleFileList(event, "delete", "detailFilelist");
+        this.handleFileList(event, "delete", "subPicFileList");
+    },
+    handleFileList(event, operation, localListName, cloudListName) {
+        let localFileList = [...this.data[localListName]];
+        let cloudFileList = [];
+        if (cloudListName) {
+            cloudFileList = [...this.data[cloudListName]];
+        }
+        let merchantData = this.data.merchantData;
+        let deletedFiles = this.data.deletedFiles;
+
+        const { file, index } = event.detail;
+
+        if (operation === "add") {
+            localFileList.push({ file, url: file.url });
+            cloudFileList.push(file);
+        } else if (operation === "delete") {
+            localFileList.splice(index, 1);
+            deletedFiles.push(file);
+            if (localFileList == "coverFilelist") {
+                merchantData.coverPic = "";
+                merchantData.coverPicID = "";
+            } else {
+                merchantData.subPic.splice(index, 1);
+                merchantData.subPicIDs.splice(index, 1);
+            }
+        }
+
+        this.setData({ [localListName]: localFileList, [cloudListName]: cloudFileList, deletedFiles, merchantData });
     },
 
     uploadSingleFile(filename, url) {
-        return this.data.db.uploadFile({
+        return cloud.uploadFile({
             cloudPath: filename,
             filePath: url,
+            name: `${Math.floor(Math.random() * 10000)}`,
         });
     },
 
     async uploadFiles(files) {
         if (!files.length) return [];
 
-        const uploadTasks = files.map((file) => this.uploadSingleFile(`${this.data.openid}-pic-${Date.now()}.png`, file.url));
+        const uploadTasks = files.map((file) => {
+            const extension = file.url.split(".").pop();
+            return this.uploadSingleFile(`${Math.floor(Math.random() * 100000)}.${extension}`, file.url);
+        });
         return await Promise.all(uploadTasks);
     },
 
+    async removeFiles(files) {
+        if (!files.length) return [];
+
+        return cloud.deleteFile({
+            fileList: files,
+        });
+    },
+
     async getHttpPath(fileIds) {
-        const { fileList } = await this.data.db.getTempFileURL({ fileList: fileIds });
+        const { fileList } = await cloud.getTempFileURL({ fileList: fileIds });
         return fileList.map((file) => file.tempFileURL);
     },
 
-    async registerOwner() {
-        const avatarPath = await this.uploadSingleFile(`${this.data.openid}_profilePic.jpg`, this.data.avatar);
-        const [avatarFileId] = await this.getHttpPath([avatarPath.fileID]);
-        const { username, openid } = this.data;
+    validateRequiredInfo(requiredInfo) {
+        return requiredInfo.some((info) => !info);
+    },
 
-        const res = await this.data.db
-            .database()
-            .collection("owner")
-            .add({
-                data: {
-                    profilePic: avatarFileId,
-                    username,
-                    openid,
-                    friends: [],
-                },
-            });
-
-        if (res.errMsg !== "collection.add:ok") throw new Error("owner registration failed");
-        return res;
+    async uploadAndGetHttpPaths(files) {
+        const uploadResults = await this.uploadFiles(files);
+        const fileIds = uploadResults.map((item) => item.fileID);
+        return [fileIds, await this.getHttpPath(fileIds)];
+    },
+    async updatePictures(addedCover, addedSubPic) {
+        let merchantData = this.data.merchantData;
+        if (addedCover && addedCover.length) {
+            const [ids, https] = await this.uploadAndGetHttpPaths(addedCover);
+            merchantData.coverPic = https[0];
+            merchantData.coverPicID = ids[0];
+        }
+        if (addedSubPic && addedSubPic.length) {
+            const [ids, https] = await this.uploadAndGetHttpPaths(addedSubPic);
+            merchantData.subPic.push(...https);
+            merchantData.subPicIDs.push(...ids);
+        }
+        this.setData({
+            merchantData,
+        });
     },
 
     async submitForm() {
         wx.showLoading({ title: "提交中" });
 
-        const {
-            hashtag,
-            category,
-            title,
-            subTitle,
-            ownerName,
-            ownerWechat,
-            paymentInfo,
-            locationName,
-            locationDetail,
-            availableTimes,
-            coverFilelist,
-            detailFilelist,
-        } = this.data.merchantData;
+        let { title, subTitle, ownerName, paymentInfo, locationDetail, availableTimes } = this.data.merchantData;
+        let { addedCover, addedSubPic, deletedFiles } = this.data;
 
-        const requiredInfo = [title, subTitle, ownerName, ownerWechat, paymentInfo, locationDetail];
+        let requiredInfo = [title, subTitle, ownerName, paymentInfo, availableTimes, locationDetail];
 
-        if (requiredInfo.some((info) => !info)) {
+        if (this.validateRequiredInfo(requiredInfo)) {
             return this.showErrorMessage("请填完所有必填信息(*号)");
         }
 
         try {
-            const registerOwnerRes = await this.registerOwner();
-            const ownerid = registerOwnerRes._id;
-            const combinedFiles = [...coverFilelist, ...detailFilelist];
-            const fileResults = await this.uploadFiles(combinedFiles);
-            const fileIds = fileResults.map((item) => item.fileID);
-            const httpPaths = await this.getHttpPath(fileIds);
+            this.removeFiles(deletedFiles.map((file) => file.filePath));
+            await this.updatePictures(addedCover, addedSubPic);
 
             const res = await cloud.callFunction({
                 name: "update",
@@ -124,13 +173,12 @@ Page({
                 },
             });
 
-            if (res.errMsg !== "collection.add:ok") throw new Error("registration failed");
-
             wx.hideLoading();
-            wx.showToast({ title: "申请成功", icon: "success" });
-            setTimeout(() => wx.navigateTo({ url: "/pages/pendingReview/index" }), 1500);
+            wx.showToast({ title: "更新成功", icon: "success" });
+            await app.globalData.merchantManager.getMerchantData(this.data.ownerData._id, app, true);
+            wx.navigateBack({ delta: 1 });
         } catch (error) {
-            this.showErrorMessage("申请失败");
+            this.showErrorMessage("更新失败");
             console.error(error);
         }
     },
@@ -142,8 +190,8 @@ Page({
 
     submit() {
         wx.showModal({
-            title: "申请确认",
-            content: "确定提交申请么？",
+            title: "更新确认",
+            content: "确定更新这些信息么？",
             success: (res) => {
                 if (res.confirm) {
                     this.submitForm();

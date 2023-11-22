@@ -1,6 +1,7 @@
 const MerchantManager = require("./utils/MerchantManager");
 const OrderManager = require("./utils/OrderManager");
 const OwnerManager = require("./utils/OwnerManager");
+const ServiceManager = require("./utils/ServiceManager");
 
 import { fetchDataFromDB } from "./utils/dbUtils";
 // app.js
@@ -14,8 +15,8 @@ App({
         loginStatus: "notLoggedIn",
     },
 
-    onLaunch: function () {
-        this.initializeApp();
+    onLaunch: async function () {
+        await this.initializeApp();
     },
 
     // Main initialization function
@@ -37,24 +38,26 @@ App({
         const merchantManager = new MerchantManager(c1);
         const orderManager = new OrderManager(c1);
         const ownerManager = new OwnerManager(c1);
+        const serviceManager = new ServiceManager(c1);
 
         this.globalData.merchantManager = merchantManager;
         this.globalData.orderManager = orderManager;
         this.globalData.ownerManager = ownerManager;
+        this.globalData.serviceManager = serviceManager;
 
         // Get or set openid
         const openid = await this.checkAndGetOpenid(c1);
         if (!openid) return; // Exit if there's no openid
 
         // Get owner info and subsequently merchant info
-        const ownerData = await ownerManager.refreshOwnerData(openid, this);
+        const ownerData = await ownerManager.getOwnerData(openid, this);
         if (!ownerData) {
             this.globalData.loginStatus = "notRegistered";
             return;
         }
 
         console.log("ownerData", ownerData);
-        const merchantData = await merchantManager.refreshMerchantData(ownerData._id, this);
+        const merchantData = await merchantManager.getMerchantData(ownerData._id, this);
         if (!merchantData) {
             this.globalData.loginStatus = "underReview";
             wx.navigateTo({ url: "/pages/pendingReview/index" });
@@ -104,7 +107,7 @@ App({
                                 //2. 用户确定下载更新小程序，小程序下载及更新静默进行
                                 self.downLoadAndUpdate(updateManager);
                             } else if (res.cancel) {
-                                //用户点击取消按钮的处理，如果需要强制更新，则给出二次弹窗，如果不需要，则这里的代码都可以删掉了
+                                1; //用户点击取消按钮的处理，如果需要强制更新，则给出二次弹窗，如果不需要，则这里的代码都可以删掉了
                                 wx.showModal({
                                     title: "提示",
                                     content: "本次版本更新涉及到新的功能添加，旧版本无法正常访问",

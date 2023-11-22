@@ -27,7 +27,12 @@
                 <view class="title">进行中</view>
             </view>
         </view>
-        <view class="swiper">
+        <van-empty custom-class="empty" description="暂无订单">
+            <view slot="image">
+                <image src="../../images/index/empty.png" />
+            </view>
+        </van-empty>
+        <view class="swiper" wx:if="{{ pendingOrders.length > 0 }}">
             <swiper wx:if="{{ !loading }}" autoplay circular indicator-dots indicator-active-color="#369472" interval="7000">
                 <swiper-item class="swiper-item" wx:for="{{ pendingOrders }}" bindtap="orderNavigator" data-orderid="{{ item._id }}">
                     <view class="orderRow">
@@ -77,14 +82,14 @@
         <view class="info">
             <view class="info_row">
                 <view class="number">
-                    <text>{{ merchantData.numOrder }}</text>
+                    <text>{{ merchantData.numOrder || "暂无" }}</text>
                 </view>
                 <view class="title">总订单数</view>
                 <view class="vertical_line"></view>
             </view>
             <view class="info_row">
                 <view class="number">
-                    <text>{{ merchantData.avgRating || '暂无' }}</text>
+                    <text>{{ merchantData.avgRating || "暂无" }}</text>
                 </view>
                 <view class="title">最新评分</view>
                 <view class="vertical_line"></view>
@@ -92,7 +97,7 @@
             <view class="info_row">
                 <view class="number">
                     <van-icon name="star" color="#FFCD22" />
-                    <text style="margin-left: 5rpx">{{  merchantData.avgRating || '暂无'}}</text>
+                    <text style="margin-left: 5rpx">{{ merchantData.avgRating || "暂无" }}</text>
                 </view>
                 <view class="title">历史平均</view>
             </view>

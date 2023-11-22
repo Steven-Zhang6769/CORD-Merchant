@@ -11,11 +11,11 @@
 
     <van-skeleton title avatar row="4" loading="{{ loading }}" custom-class="loading" />
     <view class="main" wx:if="{{ !loading }}">
-        <van-empty
-            class="custom-image"
-            image="https://img.yzcdn.cn/vant/custom-empty-image.png"
-            description="无此类订单"
-            wx:if="{{ !orders || orders.length == 0 }}" />
+        <van-empty custom-class="empty" description="无此类订单" wx:if="{{ !orders || orders.length == 0 }}">
+            <view slot="image">
+                <image src="../../images/index/empty.png" />
+            </view>
+        </van-empty>
         <view class="fullOrderRow" wx:for="{{ orders }}" bindtap="orderNavigator" data-orderid="{{ item._id }}">
             <view class="top">
                 <view class="left">

@@ -5,6 +5,9 @@ page {
   margin: 0px, auto;
   margin-top: 65rpx;
 }
+.body .empty {
+  margin-top: 250rpx;
+}
 .body .orderCard {
   background-color: white;
   padding: 20rpx;

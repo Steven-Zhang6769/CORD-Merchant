@@ -5,7 +5,7 @@ Page({
         coverFilelist: [],
         detailFilelist: [],
         openid: wx.getStorageSync("openid"),
-        db: app.globalData.db,
+        cloud: app.globalData.cloud,
     },
 
     onLoad(options) {
@@ -52,35 +52,41 @@ Page({
     },
 
     uploadSingleFile(filename, url) {
-        return this.data.db.uploadFile({
+        return this.data.cloud.uploadFile({
             cloudPath: filename,
             filePath: url,
+            name: `${Math.floor(Math.random() * 10000)}`,
         });
+    },
+
+    async getHttpPath(fileIds) {
+        const { fileList } = await this.data.cloud.getTempFileURL({ fileList: fileIds });
+        return fileList.map((file) => file.tempFileURL);
     },
 
     async uploadFiles(files) {
         if (!files.length) return [];
 
-        const uploadTasks = files.map((file) => this.uploadSingleFile(`${this.data.openid}-pic-${Date.now()}.png`, file.url));
+        const uploadTasks = files.map((file) => {
+            const extension = file.url.split(".").pop();
+            return this.uploadSingleFile(`${Math.floor(Math.random() * 100000)}.${extension}`, file.url);
+        });
         return await Promise.all(uploadTasks);
-    },
-
-    async getHttpPath(fileIds) {
-        const { fileList } = await this.data.db.getTempFileURL({ fileList: fileIds });
-        return fileList.map((file) => file.tempFileURL);
     },
 
     async registerOwner() {
         const avatarPath = await this.uploadSingleFile(`${this.data.openid}_profilePic.jpg`, this.data.avatar);
-        const [avatarFileId] = await this.getHttpPath([avatarPath.fileID]);
+        const avatarID = avatarPath.fileID;
+        const [avatarHttpPath] = await this.getHttpPath([avatarPath.fileID]);
         const { username, openid } = this.data;
 
-        const res = await this.data.db
+        const res = await this.data.cloud
             .database()
-            .collection("owner")
+            .collection("owners")
             .add({
                 data: {
-                    profilePic: avatarFileId,
+                    profilePic: avatarHttpPath,
+                    profilePicID: avatarID,
                     username,
                     openid,
                     friends: [],
@@ -95,6 +101,7 @@ Page({
         wx.showLoading({ title: "提交中" });
 
         const {
+            hashtag,
             category,
             title,
             subTitle,
@@ -108,7 +115,7 @@ Page({
             detailFilelist,
         } = this.data;
 
-        const requiredInfo = [title, subTitle, ownerName, ownerWechat, paymentInfo, locationDetail];
+        const requiredInfo = [title, subTitle, ownerName, ownerWechat, paymentInfo, availableTimes, locationDetail];
 
         if (requiredInfo.some((info) => !info)) {
             return this.showErrorMessage("请填完所有必填信息(*号)");
@@ -121,15 +128,22 @@ Page({
             const fileResults = await this.uploadFiles(combinedFiles);
             const fileIds = fileResults.map((item) => item.fileID);
             const httpPaths = await this.getHttpPath(fileIds);
+            console.log(combinedFiles);
+            console.log(fileResults);
+            console.log(fileIds);
+            console.log(httpPaths);
 
-            const res = await this.data.db
+            const res = await this.data.cloud
                 .database()
-                .collection("merchant-application")
+                .collection("merchant-applications")
                 .add({
                     data: {
                         title,
                         subTitle,
+                        hashtag,
+                        coverPicID: fileIds[0],
                         coverPic: httpPaths[0],
+                        subPicIDs: fileIds.slice(1),
                         subPic: httpPaths.slice(1),
                         owner: ownerid,
                         ownerName,
@@ -139,7 +153,6 @@ Page({
                         availableTimes,
                         paymentInfo,
                         category,
-                        approved: false,
                     },
                 });
 

@@ -17,6 +17,12 @@ async function fetchDataFromDB(collection, whereCondition = null, docId = null, 
     }
 }
 
+async function getHttpPath(fileIds, cloud) {
+    const { fileList } = await cloud.getTempFileURL({ fileList: fileIds });
+    return fileList.map((file) => file.tempFileURL);
+}
+
 module.exports = {
     fetchDataFromDB,
+    getHttpPath,
 };
