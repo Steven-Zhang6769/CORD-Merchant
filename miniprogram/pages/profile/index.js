@@ -13,8 +13,9 @@ Page({
 
     async onLoad(options) {
         this.showLoading();
-        const merchantData = await app.globalData.merchantManager.getMerchantData(this.data.ownerData._id, app, true);
-        const ownerData = await app.globalData.ownerManager.getOwnerData(this.data.ownerData._id, app, true);
+        const ownerID = wx.getStorageSync("ownerData")._id;
+        const merchantData = await app.globalData.merchantManager.getMerchantData(ownerID, app, true);
+        const ownerData = await app.globalData.ownerManager.getOwnerData(ownerID, app, true);
         this.setData({
             merchantData,
             ownerData,
@@ -27,7 +28,8 @@ Page({
         });
     },
     onPullDownRefresh: async function () {
-        this.onLoad();
+        await this.onLoad();
+        wx.stopPullDownRefresh();
     },
     showLoading() {
         this.setData({ loading: true });

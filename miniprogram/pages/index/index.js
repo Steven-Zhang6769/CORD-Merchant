@@ -19,7 +19,8 @@ Page({
         this.setData({
             merchantData,
         });
-        this.onLoad();
+        await this.onLoad();
+        wx.stopPullDownRefresh();
     },
 
     async loadOrders() {

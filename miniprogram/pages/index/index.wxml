@@ -27,7 +27,7 @@
                 <view class="title">进行中</view>
             </view>
         </view>
-        <van-empty custom-class="empty" description="暂无订单">
+        <van-empty custom-class="empty" description="暂无待审核订单" wx:if="{{ !pendingOrders || pendingOrders.length == 0 }}">
             <view slot="image">
                 <image src="../../images/index/empty.png" />
             </view>
@@ -40,7 +40,17 @@
                             <view class="left">
                                 <view class="storeInfo">
                                     <view class="thumb">
-                                        <image src="{{ item.participantData.profilePic }}" mode="aspectFill"></image>
+                                        <van-image
+                                            src="{{ item.participantData.profilePic }}"
+                                            lazy-load
+                                            fit="cover"
+                                            use-loading-slot
+                                            use-error-slot
+                                            custom-class="image"
+                                            round>
+                                            <van-loading slot="loading" type="spinner" size="20" vertical />
+                                            <van-icon slot="error" name="photo-o" size="50rpx" />
+                                        </van-image>
                                     </view>
                                     <view class="storeDetail">
                                         <view class="h3">{{ item.participantData.username }}</view>
@@ -73,7 +83,9 @@
             <view class="h4">查看现存订单 <van-icon name="arrow" /></view>
         </view>
         <view class="profilePic">
-            <image src="{{ ownerData.profilePic }}"></image>
+            <van-image src="{{ ownerData.profilePic }}" lazy-load fit="cover" use-loading-slot use-error-slot custom-class="image" round>
+                <van-loading slot="loading" type="spinner" size="20" vertical />
+            </van-image>
         </view>
     </view>
     <view class="card review">

@@ -3,7 +3,17 @@
         <view class="left">
             <view class="participant userRow">
                 <view class="profile">
-                    <image src="{{ participantData.profilePic }}"></image>
+                    <van-image
+                        src="{{ participantData.profilePic }}"
+                        lazy-load
+                        fit="cover"
+                        use-loading-slot
+                        use-error-slot
+                        custom-class="image"
+                        round>
+                        <van-loading slot="loading" type="spinner" size="20" vertical />
+                        <van-icon slot="error" name="photo-o" size="50rpx" />
+                    </van-image>
                 </view>
                 <view class="userInfo">
                     <view class="h6">参与者</view>
@@ -13,7 +23,10 @@
             <view class="line"></view>
             <view class="merchant userRow">
                 <view class="profile">
-                    <image src="{{ merchantData.coverPic }}"></image>
+                    <van-image src="{{ merchantData.coverPic }}" lazy-load fit="cover" use-loading-slot use-error-slot custom-class="image" round>
+                        <van-loading slot="loading" type="spinner" size="20" vertical />
+                        <van-icon slot="error" name="photo-o" size="50rpx" />
+                    </van-image>
                 </view>
                 <view class="userInfo">
                     <view class="h6">商家</view>

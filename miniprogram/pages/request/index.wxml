@@ -21,7 +21,16 @@
                 <view class="left">
                     <view class="storeInfo">
                         <view class="thumb">
-                            <image src="{{ item.participantData.profilePic }}" mode="aspectFill"></image>
+                            <van-image
+                                src="{{ item.participantData.profilePic }}"
+                                fit="cover"
+                                use-loading-slot
+                                use-error-slot
+                                custom-class="image"
+                                round>
+                                <van-loading slot="loading" type="spinner" size="20" vertical />
+                                <van-icon slot="error" name="photo-o" size="50rpx" />
+                            </van-image>
                         </view>
                         <view class="storeDetail">
                             <view class="h3">{{ item.participantData.username }}</view>

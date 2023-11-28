@@ -47,7 +47,7 @@ page {
   color: white;
   margin-top: 23rpx;
 }
-.body .welcome image {
+.body .welcome .image {
   margin-right: 35rpx;
   width: 130rpx;
   height: 130rpx;

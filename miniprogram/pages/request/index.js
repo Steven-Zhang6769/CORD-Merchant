@@ -12,6 +12,10 @@ Page({
     },
 
     onLoad(options) {},
+    onPullDownRefresh: async function () {
+        await this.loadOrders(this.data.status[this.data.active]);
+        wx.stopPullDownRefresh();
+    },
     async loadOrders(status) {
         this.showLoading();
         const orders = await app.globalData.orderManager.getMerchantStatusOrders(this.data.merchantData._id, status);
@@ -22,14 +26,10 @@ Page({
         this.hideLoading();
     },
     showLoading() {
-        wx.showLoading({
-            title: "加载中",
-        });
         this.setData({ loading: true });
     },
     hideLoading() {
         this.setData({ loading: false });
-        wx.hideLoading();
     },
     onTabChange(event) {
         if (event.detail != this.data.active) {

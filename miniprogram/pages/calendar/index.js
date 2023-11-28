@@ -6,6 +6,8 @@ Page({
     data: {
         merchantData: app.globalData.merchantData,
         ownerData: app.globalData.merchantData,
+        merchantId: wx.getStorageSync("merchantData")._id,
+        ownerId: wx.getStorageSync("ownerData")._id,
         db: app.globalData.db,
         loading: true,
         active: 2,
@@ -15,10 +17,14 @@ Page({
     onLoad(options) {
         this.refreshOrders(new Date());
     },
+    onPullDownRefresh: async function () {
+        await this.refreshOrders(new Date());
+        wx.stopPullDownRefresh();
+    },
 
     async refreshOrders(date) {
         this.showLoading();
-        const res = await app.globalData.orderManager.getMerchantOrderOnDay(this.data.merchantData._id, date);
+        const res = await app.globalData.orderManager.getMerchantOrderOnDay(this.data.merchantId, date);
         this.setData({
             orders: res,
         });

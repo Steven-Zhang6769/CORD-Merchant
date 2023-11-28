@@ -19,6 +19,7 @@ Page({
     },
 
     uploadSingleFile(filename, url) {
+        console.log(cloud);
         return cloud.uploadFile({
             cloudPath: filename,
             filePath: url,

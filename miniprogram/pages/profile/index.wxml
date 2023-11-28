@@ -4,7 +4,9 @@
             <view class="switchButton" bindtap="exitStore">
                 <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/switchPersonal.png"></image>
             </view>
-            <image src="{{ merchantData.coverPic }}" mode="aspectFill"></image>
+            <van-image src="{{ merchantData.coverPic }}" fit="cover" use-loading-slot use-error-slot custom-class="image" round>
+                <van-loading slot="loading" type="spinner" size="20" vertical />
+            </van-image>
             <view class="text">{{ merchantData.title }}</view>
             <view class="buttons">
                 <button bindtap="merchantDetailNavigator">查看详情</button>

@@ -127,7 +127,7 @@
 .orderRow .top .left .storeInfo .thumb {
   margin-left: -25rpx;
 }
-.orderRow .top .left .storeInfo .thumb image {
+.orderRow .top .left .storeInfo .thumb .image {
   width: 145rpx;
   height: 145rpx;
   border-radius: 50%;
@@ -210,7 +210,7 @@
 .fullOrderRow .top .left .storeInfo .thumb {
   margin-left: -27rpx;
 }
-.fullOrderRow .top .left .storeInfo .thumb image {
+.fullOrderRow .top .left .storeInfo .thumb .image {
   width: 140rpx;
   height: 140rpx;
   border-radius: 50%;

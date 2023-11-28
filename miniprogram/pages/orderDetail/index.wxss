@@ -24,7 +24,7 @@
   text-align: center;
   flex: 33%;
 }
-.header .left .userRow .profile image {
+.header .left .userRow .profile .image {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;

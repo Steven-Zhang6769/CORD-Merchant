@@ -29,6 +29,7 @@
             placeholder="请输入服务细节描述"
             border="{{ true }}"
             label="服务细节（可多行）"
+            type="textarea"
             autosize
             bind:change="onChange"
             data-field="serviceDescription"
@@ -42,6 +43,7 @@
             type="number"
             border="{{ true }}"
             label="美元价格"
+            type="number"
             bind:change="onChange"
             autosize
             data-field="USDPrice"
